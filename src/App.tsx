@@ -14,9 +14,9 @@ function App() {
 			<BrowserRouter>
 			<Header/>
 				<Routes>
-					<Route path='/' element={<Main category='For woman'/>} />
-					<Route path='man' element={<Main category='For man'/>} />
-					<Route path='kids' element={<Main category='For kids'/>} />
+					<Route path='/all' element={<Main category='For woman'/>} />
+					<Route path='/clothes' element={<Main category='For man'/>} />
+					<Route path='/tech' element={<Main category='For kids'/>} />
 				</Routes>
 			</BrowserRouter>
 		</div>

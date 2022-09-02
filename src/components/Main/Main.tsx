@@ -28,8 +28,6 @@ class Main extends Component<IPropsMain> {
 					<Card/>
 					<Card/>
 				</SectionStyled>
-
-
 			</MainStyled>
 		);
 	}

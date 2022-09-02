@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {ListNavigation, StyledLI} from '../styled';
-import {navigate} from "./const";
 import {v4 as uuidv4} from 'uuid';
+import {graphql} from '@apollo/client/react/hoc';
+import {gql} from "@apollo/client";
 
 interface IState {
 	path: string;
+	navigatePanel: string[],
 }
 
 class Navigation extends Component<any, IState> {
@@ -13,6 +15,7 @@ class Navigation extends Component<any, IState> {
 		super(props)
 		this.state = {
 			path: localStorage.getItem('activeTab') || '/',
+			navigatePanel: [],
 		}
 	}
 
@@ -22,25 +25,29 @@ class Navigation extends Component<any, IState> {
 	}
 
 	render() {
+		const {categories} = this.props.data;
 		return (
 			<ListNavigation>
-				{navigate.map(
-					link => (
-						<Link to={link === '/woman' ? '/' : link} key={uuidv4()}>
-							<StyledLI
-								onClick={() => this.handleActiveTab(link)}
-								style={link === this.state.path ?{borderBottom: '4px solid #89e389', color: '#89e389'} : {}}
-							>
-								{link.slice(1).toUpperCase()}
-							</StyledLI>
-						</Link>
+				{categories && categories.map(
+					({name}: any) => (
+						<NavLink to={name} key={uuidv4()} style={({isActive}) => ({
+							borderBottom: '4px solid #89e389',
+							color: isActive ? 'red' : 'green',
+							textTransform: 'capitalize'
+						})}>
+							{name}
+						</NavLink>
 					)
 				)}
 			</ListNavigation>
-
-
 		);
 	}
 }
 
-export default Navigation;
+export default graphql(gql`
+query {
+		categories {
+            name
+        }
+	}
+`)(Navigation);

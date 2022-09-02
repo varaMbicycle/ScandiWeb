@@ -1,18 +1,23 @@
 import React, {Component} from 'react';
 import {SizeBlockStyled} from "./styled";
+import {sizes} from "../../../../const";
+import {v4 as uuidv4} from 'uuid';
 
 class SizeBlock extends Component {
+
 	render() {
+		const name = uuidv4();
 		return (
 			<SizeBlockStyled>
-				<input type="radio" name='size' id='XS'/>
-				<label htmlFor='XS'>XS</label>
-				<input type="radio" name='size' id='S'/>
-				<label htmlFor='S'>S</label>
-				<input type="radio" name='size' id='M'/>
-				<label htmlFor='M'>M</label>
-				<input type="radio" name='size' id='L'/>
-				<label htmlFor='L'>L</label>
+				{sizes.map(size => {
+					const id = uuidv4();
+					return(
+						<>
+							<input type="radio" name={name} id={id}/>
+							<label htmlFor={id}>{size}</label>
+						</>
+					)})
+				}
 			</SizeBlockStyled>
 		);
 	}
