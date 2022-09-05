@@ -12,10 +12,10 @@ class SizeBlock extends Component {
 				{sizes.map(size => {
 					const id = uuidv4();
 					return(
-						<>
+						<React.Fragment key={id}>
 							<input type="radio" name={name} id={id}/>
 							<label htmlFor={id}>{size}</label>
-						</>
+						</React.Fragment>
 					)})
 				}
 			</SizeBlockStyled>

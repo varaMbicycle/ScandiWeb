@@ -30,12 +30,14 @@ class Navigation extends Component<any, IState> {
 			<ListNavigation>
 				{categories && categories.map(
 					({name}: any) => (
-						<NavLink to={name} key={uuidv4()} style={({isActive}) => ({
-							borderBottom: '4px solid #89e389',
-							color: isActive ? 'red' : 'green',
-							textTransform: 'capitalize'
-						})}>
-							{name}
+						<NavLink to={name === 'all' ? '/' : name}
+						         key={uuidv4()}
+						         style={({isActive}) => ({
+							         color: 'black',
+							         padding: '1rem 2rem',
+							         borderBottom: isActive ? '4px solid #89e389' : 'none',
+						         })}>
+							{name.toUpperCase()}
 						</NavLink>
 					)
 				)}

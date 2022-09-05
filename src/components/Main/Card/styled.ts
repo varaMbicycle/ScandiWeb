@@ -6,7 +6,13 @@ export const CardStyled = styled.div`
   display: flex;
   flex-direction: column;
   transition: 0.3s;
-
+  
+  >img {
+    display: block;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+    width: 330px;
+  }
   button {
     position: absolute;
     padding: 1rem;

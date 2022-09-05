@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {SelectOptions} from "../Header/components/UserBar/styled";
 import {DropDownSelectMoney, SelectMoneyContainer, ToggleSelectMoney} from "../Header/components/UserBar/styled";
+import {getAllCurrencies} from "../../queries";
 
 interface IProps {
 	value: any;

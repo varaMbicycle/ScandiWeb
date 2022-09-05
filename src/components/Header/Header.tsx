@@ -2,12 +2,14 @@ import React, {Component} from 'react';
 import Navigation from "./components/Navigation/Navigation";
 import ActiveBTN from "./components/UserBar/UserBar";
 import {AppBar, StyledNavigation} from './styled'
-import {graphql} from "@apollo/client/react/hoc";
-import {gql} from "@apollo/client";
+import {ICategories} from "../../Interfaces";
 
-
-class Header extends Component {
+class Header extends Component<any, any> {
+	constructor(props: ICategories[]) {
+		super(props);
+	}
 	render() {
+		console.log(this.props)
 		return (
 			<AppBar>
 				<StyledNavigation>
@@ -20,10 +22,4 @@ class Header extends Component {
 	}
 }
 
-export default graphql(gql`
-query {
-		categories {
-            name
-        }
-	}
-`)(Header);
+export default Header;
