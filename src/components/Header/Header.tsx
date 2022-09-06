@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Navigation from "./components/Navigation/Navigation";
-import ActiveBTN from "./components/UserBar/UserBar";
+import UserBar from "./components/UserBar/UserBar";
 import {AppBar, StyledNavigation} from './styled'
 import {ICategories} from "../../Interfaces";
 
@@ -9,14 +9,16 @@ class Header extends Component<any, any> {
 		super(props);
 	}
 	render() {
-		console.log(this.props)
 		return (
 			<AppBar>
 				<StyledNavigation>
 					<Navigation />
 				</StyledNavigation>
 				<img src={process.env.PUBLIC_URL + "/img/a-logo.svg"} alt="logo" height={41} width={41}/>
-				<ActiveBTN/>
+				<UserBar
+					currencies={this.props.currencies}
+					handleChangeCurrency={this.props.handleChangeCurrency}
+				/>
 			</AppBar>
 		);
 	}

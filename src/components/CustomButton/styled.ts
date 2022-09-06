@@ -6,7 +6,7 @@ export const StyledCustomButton = styled.button<{ color: string }>`
   color: ${props => props.color === 'primary' ? '#000000' : '#ffffff'};
   padding: 0.5rem 1.5rem;
   transition: 0.2s;
-  max-width: 140px;
+  min-width: 140px;
   max-height: 43px;
   font-size: 14px;
   font-weight: 600;

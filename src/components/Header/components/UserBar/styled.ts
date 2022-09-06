@@ -86,9 +86,9 @@ export const SelectOptions = styled.ul`
   list-style: none;
 `
 export const OptionStyled = styled.li`
-  padding: 0.75rem;
+  padding: 0.75rem 0.25rem 0.75rem 1.25rem;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
 
   :hover {

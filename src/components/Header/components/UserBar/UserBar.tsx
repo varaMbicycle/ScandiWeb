@@ -1,23 +1,31 @@
 import React, {Component} from 'react';
-import {CartButton, CartCounter, FlexContainer} from "./styled";
+import { FlexContainer} from "./styled";
 import CustomSelect from "../../../CustomSelect/CustomSelect";
 import CustomOption from "../../../CustomSelect/CustomOption";
 import Cart from "../../../Cart/Cart";
-import {getAllCurrencies} from "../../../../queries";
+import {v4 as uuidv4} from "uuid";
 
-class UserBar extends Component<any> {
-	state = {
-		currentCurrency: this.props.data.currencies[0].symbol
+class UserBar extends Component<any, any> {
+	constructor(props:any) {
+		super(props)
+		this.state = {
+			currentCurrency: localStorage.getItem('currentCurrency') || '$'
+		}
 	}
-	handleChangeCurrency = (currentCurrency: number) => this.setState({currentCurrency})
-	x = 1;
+
+	handleChangeCurrency = (currentCurrency: string) => {
+		localStorage.setItem('currentCurrency', currentCurrency);
+		this.setState({currentCurrency})
+		this.props.handleChangeCurrency(currentCurrency);
+	}
+
 	render() {
-		console.log('sdgdsgsd', this.props)
+		const currencies = this.props.currencies || [];
 		return (
 			<FlexContainer>
 				<CustomSelect value={this.state.currentCurrency} onChange={this.handleChangeCurrency}>
-					{this.props.data.currencies.map((currency:any) => (
-						<CustomOption value={currency.symbol}>
+					{currencies.map((currency:any) => (
+						<CustomOption value={currency.symbol} key={uuidv4()}>
 							{currency.symbol + ' ' + currency.label}
 						</CustomOption>
 					))}
@@ -28,4 +36,4 @@ class UserBar extends Component<any> {
 	}
 }
 
-export default getAllCurrencies(UserBar);
+export default UserBar;

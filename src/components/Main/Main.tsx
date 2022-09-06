@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {H2} from '../../styled';
 import {MainStyled, SectionStyled} from "./styled";
 import Card from "./Card/Card";
-import {getProductOfCategory} from "../../queries";
+import {getProductsOfCategory} from "../../queries";
 import {v4 as uuidv4} from "uuid";
 
 interface IPropsMain {
@@ -40,4 +40,4 @@ class Main extends Component<any> {
 	}
 }
 
-export default getProductOfCategory()(Main);
+export default getProductsOfCategory()(Main);
