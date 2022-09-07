@@ -10,7 +10,7 @@ import {
 import {graphql} from "@apollo/client/react/hoc";
 import {gql} from "@apollo/client";
 import {v4 as uuidv4} from "uuid";
-import {getAllCategories, getAllCurrenciesWithCategories} from "./queries";
+import {getAllCategories, getAllCurrenciesWithCategories, getProduct} from "./queries";
 import {ICategories} from "./Interfaces";
 import CardPage from "./components/CardPage/CardPage";
 
@@ -26,6 +26,10 @@ class App extends Component<any> {
 	handleChangeCurrency(currency: string){
 		this.setState({...this.state, currentCurrency: currency })
 	}
+	componentDidMount() {
+		localStorage.setItem('currentCurrency', '$')
+	}
+
 	render() {
 		const {categories, currencies} = this.props.data;
 		return (
@@ -49,7 +53,7 @@ class App extends Component<any> {
 						<Route
 							key={uuidv4()}
 							path='tech/product'
-							element={<CardPage name='ps-5'/>}
+							element={<CardPage name='ps-5' />}
 						/>
 						<Route
 							key={uuidv4()}
