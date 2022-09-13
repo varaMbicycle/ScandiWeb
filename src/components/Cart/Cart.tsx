@@ -9,7 +9,8 @@ import {mapDispatchToProps, mapStateToProps} from "../../store/maps";
 
 class Cart extends Component<any, any> {
 	state: any = {
-		isOpen: false
+		isOpen: false,
+		products:[]
 	}
 
 
@@ -21,8 +22,19 @@ class Cart extends Component<any, any> {
 		document.body.style.position = 'static';
 		this.setState({isOpen: false})
 	}
+	componentDidMount() {
+		const products = this.props.cart.products.map((product:any)=>{
+			return {
+				quantity: 1,
+				product: {...product}
+			}
+		});
+		console.log(products)
+		this.setState({...this.state, products: products})
+	}
 
 	render() {
+		console.log(this.props);
 		return (
 			<CartContainer>
 				<CartButton
