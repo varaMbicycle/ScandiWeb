@@ -3,24 +3,15 @@ import {CartButton, CartCounter} from "../Header/components/UserBar/styled";
 import {CartBackground, CartContainer} from "./styled";
 import Modal from "./Modal";
 import CartOverlay from "./components/CartOverlay/CartOverlay";
+import { connect } from "react-redux"
+import {mapDispatchToProps, mapStateToProps} from "../../store/maps";
 
-interface IProps {
-	value: any;
-	onChange: (value: any) => void;
-	children?: React.ReactNode;
-}
 
-interface IState {
-	isOpen: boolean;
-}
-
-class Cart extends Component<IProps, IState> {
-	state: IState = {
+class Cart extends Component<any, any> {
+	state: any = {
 		isOpen: false
 	}
 
-	// dropDownRef = React.createRef<HTMLDivElement>();
-	// backgroundRef = React.createRef<HTMLDivElement>();
 
 	handleOpen = () => {
 		document.body.style.position = 'fixed';
@@ -38,11 +29,11 @@ class Cart extends Component<IProps, IState> {
 					onClick={this.state.isOpen ? this.handleClose : this.handleOpen}
 				>
 					<img src={process.env.PUBLIC_URL + "/img/cart.svg"} alt="cart"/>
-					<CartCounter count={1}>{1}</CartCounter>
+					<CartCounter count={this.props.cart.quantity}>{this.props.cart.quantity}</CartCounter>
 				</CartButton>
 				<Modal>
 					<CartBackground isOpen={this.state.isOpen}>
-						<CartOverlay handleClose={this.handleClose}/>
+						<CartOverlay products={this.props} handleClose={this.handleClose}/>
 					</CartBackground>
 				</Modal>
 			</CartContainer>
@@ -50,4 +41,4 @@ class Cart extends Component<IProps, IState> {
 	}
 }
 
-export default Cart;
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

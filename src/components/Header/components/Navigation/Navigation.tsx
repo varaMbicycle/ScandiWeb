@@ -30,7 +30,7 @@ class Navigation extends Component<any, IState> {
 			<ListNavigation>
 				{categories && categories.map(
 					({name}: any) => (
-						<NavLink to={name === 'all' ? '/' : name}
+						<NavLink to={name}
 						         key={uuidv4()}
 						         style={({isActive}) => ({
 							         color: 'black',

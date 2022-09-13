@@ -22,7 +22,10 @@ export const getAllCurrenciesWithCategories = graphql(gql`
 		query {
 			categories {
                 name
+                products{
+                    id
                 }
+            }
 			
 			currencies{
 			label
@@ -89,7 +92,7 @@ query getProduct($id: String!) {
 }`, {
 	options: (props: any) => ({
 		variables: {
-			id: props.name
+			id: props.params.id
 		}
 	})
 });

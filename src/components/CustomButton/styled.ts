@@ -7,7 +7,7 @@ export const StyledCustomButton = styled.button<{ color: string }>`
   padding: 0.5rem 1.5rem;
   transition: 0.2s;
   min-width: 140px;
-  max-height: 43px;
+  min-height: 43px;
   font-size: 14px;
   font-weight: 600;
 
@@ -22,6 +22,6 @@ export const StyledCustomButton = styled.button<{ color: string }>`
   }
 `
 export const StyledTotalCostDescription = styled.div`
-	display: flex;
+  display: flex;
   justify-content: space-between;
 `

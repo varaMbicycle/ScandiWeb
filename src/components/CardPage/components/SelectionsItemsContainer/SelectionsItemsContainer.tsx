@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, memo} from 'react';
 import {StyledSelectionsItemsContainer, SwatchItem, TextItem} from "../../styled";
 import {v4 as uuidv4} from "uuid";
 
@@ -14,13 +14,12 @@ class SelectionsItemsContainer extends Component<any, any> {
 	}
 
 	componentDidMount() {
-		const i = this.props.type === 'text'? 1:0;
-		this.setState({...this.state, activeItem: this.props.attributes[i].items[0].id || ''})
+		const attribute = this.props.attributes;
+		this.setState({...this.state, activeItem: attribute.items[0].id || ''})
 	}
 
 	render() {
-		console.log(this.props.attributes[0].items[0].id);
-		const attribute = this.props.attributes.find((item: any) => item.type === this.props.type)
+		const attribute = this.props.attributes;
 		return (
 			<>
 				<h5>{attribute.name + ':'}</h5>
@@ -50,4 +49,4 @@ class SelectionsItemsContainer extends Component<any, any> {
 	}
 }
 
-export default SelectionsItemsContainer;
+export default memo(SelectionsItemsContainer);

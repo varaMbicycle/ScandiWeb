@@ -4,7 +4,9 @@ export const ProductContainer = styled.div`
   display: flex;
   padding: 80px 100px;
 `
-
+export const StyledImgContainer = styled.div`
+	display: flex;
+`
 export const ImagesBlock = styled.div`
   max-width: 80px;
 
@@ -13,7 +15,7 @@ export const ImagesBlock = styled.div`
     width: 100%;
     aspect-ratio: 1/1;
     object-fit: contain;
-    margin: 40px 0;
+    margin: 0 40px 40px 0;
     transition: 0.2s;
     padding: 5px;
     border-radius: 5px;
@@ -47,7 +49,7 @@ export const MainImg = styled.div`
   }
 `
 export const CardDescriptionBlock = styled.div`
-  max-width: 292px;
+  width: 292px;
   margin-left: 100px;
 
   h4 {
@@ -60,6 +62,14 @@ export const CardDescriptionBlock = styled.div`
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 700;
     margin-bottom: 8px;
+  }
+  button{
+    width: 100%;
+    padding: 1rem;
+    display: block;
+    height: auto;
+    font-size: 16px;
+    font-weight: 600;
   }
 `
 
@@ -79,11 +89,13 @@ export const StyledSelectionsItemsContainer = styled.div`
 `
 export const TextItem = styled.div<{ active: boolean }>`
   width: 63px;
-  height: 45px;
+  min-height: 45px;
   margin-right: 6px;
+  padding: 7px;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   border: 1px solid #000000;
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 16px;
@@ -93,7 +105,10 @@ export const TextItem = styled.div<{ active: boolean }>`
 
   :hover {
     cursor: pointer;
-    transform: scale(1.075);
+    transform: ${props => props.active ? 'scale(1)' : 'scale(1.075)'};
+  }
+  :active{
+    transform: scale(1);
   }
 `
 export const SwatchItem = styled.div<{ color: string, active: boolean }>`
@@ -107,11 +122,14 @@ export const SwatchItem = styled.div<{ color: string, active: boolean }>`
   transition:0.2s;
   :hover {
     cursor: pointer;
-    transform: scale(1.1);
+    transform: ${props => props.active ? 'scale(1)' : 'scale(1.1)'};
+  }
+  :active{
+    transform: scale(1);
   }
   div{
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
     background-color: ${props => props.color};
   }
 `

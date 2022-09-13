@@ -14,7 +14,22 @@ export const CartOverlayButtonsBlock = styled.div`
   padding: 1rem 0;
 `
 export const CartOverlayProductsContainer = styled.div`
+  max-height: 400px;
+  overflow: auto;
 
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #52be79;
+    border-radius: 9em;
+    box-shadow: inset 1px 1px 10px #f3faf7;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #317046;
+  }
 
 `
 export const StyledCartOverlayCard = styled.div`
@@ -28,13 +43,42 @@ export const CartOverlayProductDescription = styled.div`
   width: 136px;
 `
 export const CartOverlayCounterBlock = styled.div`
-  border: 1px solid red;
   width: 32px;
   margin: 0 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  
+  div{
+    font-size: 1rem;
+    line-height: 1rem;
+  }
+  button {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    transition: 0.2s;
+    border: 1px solid #020202;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+
+    :hover {
+      cursor: pointer;
+      background-color: #f2f2f2;
+    }
+  }
 `
 export const CartOverImgBlock = styled.div`
-  border: 1px solid red;
+  //border: 1px solid red;
   width: 121px;
+  img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
 `
 export const SmallCardDescription = styled.p`
   font-family: 'Raleway', sans-serif;
