@@ -1,12 +1,10 @@
-import {ADD, DEL} from "./Action";
+import {ADD, DEL, incrementQuantity, decrementQuantity} from "./Action";
 
-export const mapStateToProps = (props: any)=> ({
-	cart: props.ADD_TO_CART,
+export const mapStateToProps = (props: any) => ({cart: props.cartReducer.products})
+
+export const mapDispatchToProps = (dispatch: (x: any) => any) => ({
+	add: (card: any) => dispatch(ADD(card)),
+	incrementQuantity: (id: string) => dispatch(incrementQuantity(id)),
+	decrementQuantity: (id: string) => dispatch(decrementQuantity(id)),
+	del: () => dispatch(DEL())
 })
-
-export const mapDispatchToProps = (dispatch: (x:any)=> any)=>{
-	return {
-		add: (card:any) => dispatch(ADD(card)),
-		del: () => dispatch(DEL())
-	}
-}

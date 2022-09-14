@@ -1,4 +1,4 @@
-import {createStore} from "redux";
-import {CombineReducer} from "./CombineReducer";
+import {combineReducers, createStore} from "redux";
+import {cartReducer} from "./Reducer";
 
-export const store = createStore(CombineReducer)
+export const store = createStore( combineReducers({cartReducer}))

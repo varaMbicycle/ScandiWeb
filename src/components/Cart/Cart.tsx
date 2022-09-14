@@ -9,11 +9,8 @@ import {mapDispatchToProps, mapStateToProps} from "../../store/maps";
 
 class Cart extends Component<any, any> {
 	state: any = {
-		isOpen: false,
-		products:[]
+		isOpen: false
 	}
-
-
 	handleOpen = () => {
 		document.body.style.position = 'fixed';
 		!this.state.isOpen && this.setState({isOpen: true})
@@ -22,30 +19,25 @@ class Cart extends Component<any, any> {
 		document.body.style.position = 'static';
 		this.setState({isOpen: false})
 	}
-	componentDidMount() {
-		const products = this.props.cart.products.map((product:any)=>{
-			return {
-				quantity: 1,
-				product: {...product}
-			}
-		});
-		console.log(products)
-		this.setState({...this.state, products: products})
-	}
 
 	render() {
-		console.log(this.props);
 		return (
 			<CartContainer>
 				<CartButton
 					onClick={this.state.isOpen ? this.handleClose : this.handleOpen}
 				>
 					<img src={process.env.PUBLIC_URL + "/img/cart.svg"} alt="cart"/>
-					<CartCounter count={this.props.cart.quantity}>{this.props.cart.quantity}</CartCounter>
+					<CartCounter count={this.props.cart.length}>{this.props.cart.length}</CartCounter>
 				</CartButton>
 				<Modal>
 					<CartBackground isOpen={this.state.isOpen}>
-						<CartOverlay products={this.props} handleClose={this.handleClose}/>
+						<CartOverlay
+							products={this.props.cart}
+							currentCurrency={this.props.value}
+							handleClose={this.handleClose}
+							onIncrement={this.props.incrementQuantity}
+							onDecrement={this.props.decrementQuantity}
+						/>
 					</CartBackground>
 				</Modal>
 			</CartContainer>

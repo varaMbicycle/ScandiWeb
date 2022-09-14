@@ -2,9 +2,7 @@ import React, {Component, memo} from 'react';
 import {
 	CardDescriptionBlock,
 	Description,
-	ImagesBlock,
-	MainCardBlock,
-	MainImg, PriceField,
+	MainCardBlock, PriceField,
 	ProductContainer,
 	SelectionPanel,
 } from "./styled";
@@ -51,7 +49,7 @@ class CardPage extends Component<any, any> {
 						<CustomButton
 							color='secondary'
 							text='ADD TO CART'
-							handleClick={() => this.props.add(this.props.data.product)}/>
+							handleClick={() => this.props.add({quantity: 1, product: this.props.data.product})}/>
 						<Description dangerouslySetInnerHTML={{__html: description}}/>
 					</CardDescriptionBlock>
 				</MainCardBlock>
