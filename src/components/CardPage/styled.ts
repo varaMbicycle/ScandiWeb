@@ -74,7 +74,9 @@ export const CardDescriptionBlock = styled.div`
 `
 
 export const SelectionPanel = styled.div`
-
+	+div+div+div{
+      width: 100%;
+	}
 `
 export const Description = styled.p`
   margin-top: 40px;
@@ -88,7 +90,7 @@ export const StyledSelectionsItemsContainer = styled.div`
   margin-bottom: 24px;
 `
 export const TextItem = styled.div<{ active: boolean }>`
-  width: 63px;
+  min-width: 45px;
   min-height: 45px;
   margin-right: 6px;
   padding: 7px;

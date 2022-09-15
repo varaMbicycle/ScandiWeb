@@ -1,8 +1,8 @@
 import React, {Component, memo} from 'react';
-import {StyledSelectionsItemsContainer, SwatchItem, TextItem} from "../../styled";
 import {v4 as uuidv4} from "uuid";
+import {StyledSelectionsItemsContainerCart, SwatchItemCart, TextItemCart} from "./CartOverlay/styled";
 
-class SelectionsItemsContainer extends Component<any, any> {
+class SelectionsItemsContainerCart extends Component<any, any> {
 	constructor(props: any) {
 		super(props);
 		this.state = {
@@ -23,30 +23,30 @@ class SelectionsItemsContainer extends Component<any, any> {
 		return (
 			<>
 				<h5>{attribute.name + ':'}</h5>
-				<StyledSelectionsItemsContainer>
+				<StyledSelectionsItemsContainerCart>
 					{this.props.type === "text" ?
-						attribute.items.map((item:any) => <TextItem
+						attribute.items.map((item:any) => <TextItemCart
 							onClick={this.handleChangeActiveItem}
 							id={item.id}
 							active={item.id === this.state.activeItem}
 							key={uuidv4()}
 						>
 							{item.value}
-						</TextItem>) :
-						attribute.items.map((item:any) => <SwatchItem
+						</TextItemCart>) :
+						attribute.items.map((item:any) => <SwatchItemCart
 							onClick={this.handleChangeActiveItem}
 							color={item.value}
 							active={item.id === this.state.activeItem}
 							key={uuidv4()}
 						>
 							<div id={item.id}></div>
-						</SwatchItem>)
+						</SwatchItemCart>)
 					}
-				</StyledSelectionsItemsContainer>
+				</StyledSelectionsItemsContainerCart>
 			</>
 
 		);
 	}
 }
 
-export default memo(SelectionsItemsContainer);
+export default memo(SelectionsItemsContainerCart);

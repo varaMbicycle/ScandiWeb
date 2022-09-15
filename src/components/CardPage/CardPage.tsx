@@ -13,7 +13,6 @@ import {v4 as uuidv4} from "uuid";
 import SelectionsItemsContainer from "./components/SelectionsItemsContainer/SelectionsItemsContainer";
 import withParams from "../../utils";
 import ImgContainer from "./components/ImgContainer/ImgContainer";
-import {ADD, DEL} from "../../store/Action";
 import { connect } from 'react-redux';
 import {mapDispatchToProps, mapStateToProps} from "../../store/maps";
 
@@ -26,6 +25,7 @@ class CardPage extends Component<any, any> {
 		const currentCurrency = localStorage.getItem('currentCurrency');
 		const index = prices?.findIndex((price: any) => price.currency.symbol === currentCurrency) || 0
 		if (!this.props.data.product) return <div>...Loading</div>
+		console.log(this.props);
 		return (
 			<ProductContainer>
 				<ImgContainer gallery={gallery}/>
@@ -44,12 +44,11 @@ class CardPage extends Component<any, any> {
 								<h5>Price:</h5>
 								<div>{prices[index].currency.symbol + ' ' + prices[index].amount}</div>
 							</PriceField>
-							<div></div>
 						</SelectionPanel>
 						<CustomButton
 							color='secondary'
 							text='ADD TO CART'
-							handleClick={() => this.props.add({quantity: 1, product: this.props.data.product})}/>
+							handleClick={() => this.props.add(this.props.data.product)}/>
 						<Description dangerouslySetInnerHTML={{__html: description}}/>
 					</CardDescriptionBlock>
 				</MainCardBlock>

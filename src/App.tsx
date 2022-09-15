@@ -10,6 +10,7 @@ import {
 import {v4 as uuidv4} from "uuid";
 import {getAllCurrenciesWithCategories} from "./queries";
 import CardPage from "./components/CardPage/CardPage";
+import CartPage from "./components/CartPage/CartPage";
 
 
 class App extends Component<any> {
@@ -50,6 +51,11 @@ class App extends Component<any> {
 							)
 						)}
 						<Route path="/" element={<Navigate replace to="/all" />} />
+						<Route
+							key={uuidv4()}
+							path={'cart'}
+							element={<CartPage/>}
+						/>
 						<Route
 							key={uuidv4()}
 							path={'/:category/:id'}

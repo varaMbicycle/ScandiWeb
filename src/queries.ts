@@ -40,6 +40,7 @@ query getCategory($input: CategoryInput) {
     products {
         id
 		name
+		brand
 		gallery
 		inStock
 		prices{

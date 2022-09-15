@@ -6,10 +6,6 @@ import { connect } from 'react-redux';
 import {mapDispatchToProps, mapStateToProps} from "../../../store/maps";
 
 class Card extends Component<any> {
-	constructor(props: any) {
-		super(props);
-	}
-
 	handleAddToBasket = (event: React.MouseEvent): void=>{
 		event.preventDefault();
 		this.props.add(this.props.card);
