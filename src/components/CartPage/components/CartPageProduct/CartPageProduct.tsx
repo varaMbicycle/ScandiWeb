@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {CartProductContainer, CartProductDescription, CounterImgContainer} from "./styled";
 import SelectionsItemsContainer from "../../../CardPage/components/SelectionsItemsContainer/SelectionsItemsContainer";
 import {v4 as uuidv4} from "uuid";
-import {PriceField, SelectionPanel} from "../../../CardPage/styled";
+import {SelectionPanel} from "../../../CardPage/styled";
 import CartOverlayCounter from "../../../Cart/components/CartOverlay/CartOverlayCounter";
 import ImgSlider from "./ImgSlider";
 
@@ -12,7 +12,6 @@ class CartPageProduct extends Component<any> {
 		const currentCurrency = localStorage.getItem('currentCurrency');
 		const currency = product.prices.find((price: any) => price.currency.symbol === currentCurrency).amount;
 		const attributes = product.attributes;
-		console.log(this.props);
 		return (
 			<CartProductContainer>
 				<CartProductDescription>
@@ -34,7 +33,7 @@ class CartPageProduct extends Component<any> {
 						value={this.props.product.quantity}
 						id={this.props.product.id}
 					/>
-				<ImgSlider gallery={product.gallery}/>
+					<ImgSlider gallery={product.gallery}/>
 				</CounterImgContainer>
 
 			</CartProductContainer>

@@ -13,7 +13,6 @@ class CartOverlayCard extends Component<any> {
 		const currentCurrency = localStorage.getItem('currentCurrency');
 		const {attributes} = this.props.product;
 		const price = this.props.product.prices.find((price: any) => price.currency.symbol === currentCurrency).amount;
-		console.log(attributes);
 		return (
 			<StyledCartOverlayCard>
 				<CartOverlayProductDescription>

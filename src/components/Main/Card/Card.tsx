@@ -17,6 +17,7 @@ class Card extends Component<any> {
 		const price = prices.find((el: any) => el.currency.symbol === currentCurrency)
 		const {inStock,id, name, gallery } = this.props.card;
 		if(!this.props.card.prices) return <div>Loading...</div>
+		console.log(this.props)
 		return (
 			<CardStyled inStock={inStock}>
 				<p></p>

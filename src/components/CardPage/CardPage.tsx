@@ -25,7 +25,6 @@ class CardPage extends Component<any, any> {
 		const currentCurrency = localStorage.getItem('currentCurrency');
 		const index = prices?.findIndex((price: any) => price.currency.symbol === currentCurrency) || 0
 		if (!this.props.data.product) return <div>...Loading</div>
-		console.log(this.props);
 		return (
 			<ProductContainer>
 				<ImgContainer gallery={gallery}/>

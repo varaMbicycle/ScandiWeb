@@ -9,7 +9,9 @@ export const StyledImgContainer = styled.div`
 `
 export const ImagesBlock = styled.div`
   max-width: 80px;
-
+  margin-right: 5px;
+`
+export const StyledImg = styled.div<{active: boolean}>`
   img {
     display: block;
     width: 100%;
@@ -19,16 +21,17 @@ export const ImagesBlock = styled.div`
     transition: 0.2s;
     padding: 5px;
     border-radius: 5px;
+    box-shadow: ${props => !!props.active ? '0 0.5px 4px 1px rgba(34, 60, 80, 0.2)': 'none'};
 
     :hover {
-      cursor: pointer;
-      box-shadow: 0 1px 16px 2px rgba(34, 60, 80, 0.2);
-      transform: scale(1.2);
+      cursor: ${props => !!props.active ? 'default': 'pointer'};
+      box-shadow: ${props => !!props.active ? '0 0.5px 4px 1px rgba(34, 60, 80, 0.2)': '0 1px 16px 2px rgba(34, 60, 80, 0.2)'};
+      transform: ${props => props.active ? 'none': 'scale(1.2)'};
     }
 
     :active {
-      transform: scale(1);
-      box-shadow: 0 0.5px 4px 1px rgba(34, 60, 80, 0.2);
+      transform: ${props => props.active ? 'none': 'scale(1)'};
+      // box-shadow: ${props => !!props.active ? 'none': '0 0.5px 4px 1px rgba(34, 60, 80, 0.2)'};
     }
   }
 `

@@ -1,12 +1,12 @@
 import React, {Component, memo} from 'react';
-import {ImagesBlock, MainImg, StyledImgContainer} from "../../styled";
+import {ImagesBlock, MainImg, StyledImg, StyledImgContainer} from "../../styled";
 import {v4 as uuidv4} from "uuid";
 
 class ImgContainer extends Component<any, any> {
 	constructor(props:any) {
 		super(props);
 		this.state = {
-			currentImg: ''
+			currentImg: this.props.gallery[0] || ''
 		}
 	}
 	handleChangeImg = (event: any) => {
@@ -19,13 +19,15 @@ class ImgContainer extends Component<any, any> {
 			<StyledImgContainer>
 				<ImagesBlock>
 					{gallery.map((img: string) => (
-						<img
-							onClick={this.handleChangeImg}
-							src={img}
-							id={img}
-							alt={img}
-							key={uuidv4()}
-						/>
+						<StyledImg active={img === this.state.currentImg} key={uuidv4()}>
+							<img
+								onClick={this.handleChangeImg}
+								src={img}
+								id={img}
+								alt={img}
+							/>
+						</StyledImg>
+
 					))}
 				</ImagesBlock>
 				<MainImg>

@@ -18,7 +18,6 @@ interface ICartOverlay {
 
 class CartOverlay extends Component<ICartOverlay> {
 	render() {
-		console.log(this.props)
 		const currentCurrency = this.props.currentCurrency
 		const totalCost = this.props.products.reduce((total: number, product: any) => {
 			return total += (product.prices.find((price: any) => {
@@ -44,7 +43,7 @@ class CartOverlay extends Component<ICartOverlay> {
 					<H6>{currentCurrency} {totalCost.toFixed(2)}</H6>
 				</StyledTotalCostDescription>}
 				<CartOverlayButtonsBlock>
-					<NavLink to='/cart' onClick={this.props.handleClose}><CustomButton color='primary' text='VIEW BAG' handleClick={() => console.log('xxx')}/></NavLink>
+					<NavLink to='/cart'><CustomButton color='primary' text='VIEW BAG' handleClick={this.props.handleClose}/></NavLink>
 					<CustomButton color='secondary' text='CHECK OUT' handleClick={this.props.handleClose}/>
 				</CartOverlayButtonsBlock>
 			</StyledCartOverlay>
