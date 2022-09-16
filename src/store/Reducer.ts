@@ -3,6 +3,7 @@ const initialState: { products: any[] } = {
 }
 
 export const cartReducer = (state = initialState, action: any): any => {
+	console.log(state)
 	switch (action.type) {
 		case 'ADD_TO_CART':
 			const product = state.products.find(({id}) => id === action.payload.id)
