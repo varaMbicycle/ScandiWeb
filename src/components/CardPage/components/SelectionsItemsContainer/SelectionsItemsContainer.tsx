@@ -48,7 +48,7 @@ class SelectionsItemsContainer extends Component<any, any> {
 						attribute.items.map((item:any, i: number) => <SwatchItem
 							onClick={this.handleChangeActiveItem}
 							color={item.value}
-							active={i === this.props.attribute.activeItem}
+							active={i === attribute.activeItem}
 							key={uuidv4()}
 						>
 							<div id={item.id}></div>
