@@ -22,7 +22,10 @@ class CartOverlayCard extends Component<any> {
 						{!!attributes.length &&
 							attributes.map((attribute: any, i: number, arr: any) => (
 								<SelectionsItemsContainerCart
+									selectItem={this.props.selectItem}
 									attributes={arr[i]}
+									product={this.props.product.id}
+									item={arr[i].id}
 									type={arr[i].type}
 									key={uuidv4()}
 								/>))}

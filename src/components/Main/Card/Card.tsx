@@ -4,11 +4,12 @@ import {CardStyled} from "./styled";
 import {NavLink} from "react-router-dom";
 import { connect } from 'react-redux';
 import {mapDispatchToProps, mapStateToProps} from "../../../store/maps";
+import {changeProductForBasket} from "../../../utils/utils";
 
 class Card extends Component<any> {
 	handleAddToBasket = (event: React.MouseEvent): void=>{
 		event.preventDefault();
-		this.props.add(this.props.card);
+		this.props.add(changeProductForBasket(this.props.card));
 	}
 
 	render() {

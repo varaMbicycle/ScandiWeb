@@ -17,7 +17,7 @@ class App extends Component<any> {
 	constructor(props: any) {
 		super(props);
 		this.state = {
-			currentCurrency: localStorage.getItem('currentCurrency')
+			currentCurrency: localStorage.getItem('currentCurrency') || '$'
 		}
 		this.handleChangeCurrency = this.handleChangeCurrency.bind(this);
 	}

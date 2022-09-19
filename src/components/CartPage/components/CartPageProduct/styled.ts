@@ -37,7 +37,7 @@ export const CounterImgContainer = styled.div`
 `
 export const ImgSliderContainer = styled.div`
   height: 290px;
-  max-width: 190px;
+  width: 190px;
   display: flex;
   margin-left: 24px;
   position: relative;
@@ -64,8 +64,9 @@ export const ImgSliderContainer = styled.div`
   }
 
   img {
+    transition: 1s;
     display: block;
-    width: 100%;
+    min-width: 100%;
     height: 100%;
     object-fit: contain;
   }

@@ -26,3 +26,15 @@ export interface activeProduct {
 		}
 	]
 }
+export const changeProductForBasket = (product: any) => (
+	{
+		...product,
+		activeImg: 0,
+		attributes: product.attributes.map((attribute: any) => (
+			{
+				...attribute,
+				activeItem: 0,
+			}
+		))
+	}
+)

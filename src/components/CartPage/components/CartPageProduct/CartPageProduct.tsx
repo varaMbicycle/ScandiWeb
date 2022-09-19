@@ -7,20 +7,27 @@ import CartOverlayCounter from "../../../Cart/components/CartOverlay/CartOverlay
 import ImgSlider from "./ImgSlider";
 
 class CartPageProduct extends Component<any> {
+
 	render() {
-		const {product} = this.props;
+		const {prices, attributes, brand, name, gallery} = this.props.product;
 		const currentCurrency = localStorage.getItem('currentCurrency');
-		const currency = product.prices.find((price: any) => price.currency.symbol === currentCurrency).amount;
-		const attributes = product.attributes;
+		const currency = prices.find((price: any) => price.currency.symbol === currentCurrency).amount;
 		return (
 			<CartProductContainer>
 				<CartProductDescription>
-					<h3>{product.brand}</h3>
-					<h4>{product.name}</h4>
+					<h3>{brand}</h3>
+					<h4>{name}</h4>
 					<h5>{currentCurrency} {currency}</h5>
 					<SelectionPanel>
 						{!!attributes.length && <div>{attributes.map((attribute: any, i: number, arr: any) => (
-								<SelectionsItemsContainer attributes={arr[i]} type={arr[i].type} key={uuidv4()}/>
+								<SelectionsItemsContainer
+									attributes={arr[i]}
+									type={arr[i].type}
+									key={uuidv4()}
+									selectItem={this.props.selectItem}
+									product={this.props.product.id}
+									item={arr[i].id}
+								/>
 							)
 						)}
 						</div>}
@@ -33,7 +40,13 @@ class CartPageProduct extends Component<any> {
 						value={this.props.product.quantity}
 						id={this.props.product.id}
 					/>
-					<ImgSlider gallery={product.gallery}/>
+					<ImgSlider
+						moveLeft={this.props.moveLeft}
+						moveRight={this.props.moveRight}
+						gallery={gallery}
+						name={this.props.product.id}
+						activeImg={this.props.product.activeImg}
+					/>
 				</CounterImgContainer>
 
 			</CartProductContainer>

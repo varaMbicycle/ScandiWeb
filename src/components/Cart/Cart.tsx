@@ -37,6 +37,7 @@ class Cart extends Component<any, any> {
 							handleClose={this.handleClose}
 							onIncrement={this.props.incrementQuantity}
 							onDecrement={this.props.decrementQuantity}
+							selectItem={this.props.selectItem}
 						/>
 					</CartBackground>
 				</Modal>

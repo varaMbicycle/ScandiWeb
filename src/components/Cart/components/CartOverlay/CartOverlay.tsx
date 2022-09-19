@@ -12,6 +12,7 @@ interface ICartOverlay {
 	handleClose: () => void;
 	onIncrement: (event: any) => void;
 	onDecrement: (event: any) => void;
+	selectItem: ()=>void;
 	products: any;
 	currentCurrency: string;
 }
@@ -35,6 +36,7 @@ class CartOverlay extends Component<ICartOverlay> {
 							product={product}
 							onIncrement={this.props.onIncrement}
 							onDecrement={this.props.onDecrement}
+							selectItem={this.props.selectItem}
 						/>
 					))}
 				</CartOverlayProductsContainer>
