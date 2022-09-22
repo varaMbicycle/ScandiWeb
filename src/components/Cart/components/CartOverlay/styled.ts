@@ -36,7 +36,7 @@ export const StyledCartOverlayCard = styled.div`
   display: flex;
   position: relative;
   width: 100%;
-  padding: 20px 0;
+  padding: 20px 5px;
   box-shadow: 0px 11px 21px -13px rgba(34, 60, 80, 0.2);
   margin-bottom: 12px;
 
@@ -102,7 +102,7 @@ export const CartOverlayCounterBlock = styled.div`
   }
 `
 export const CartOverImgBlock = styled.div`
-  width: 121px;
+  width: 100px;
   img{
     height: 100%;
     width: 100%;
@@ -128,7 +128,6 @@ export const SmallCardCost = styled.p`
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
-  //line-height: 160%;
 `
 export const SizeBlockStyled = styled.div`
 
@@ -138,9 +137,9 @@ export const StyledSelectionsItemsContainerCart = styled.div`
   margin-bottom: 10px;
 `
 export const TextItemCart = styled.div<{ active: boolean }>`
-  min-width: 25px;
+  min-width: 30px;
   min-height: 25px;
-  margin-right: 6px;
+  margin-right: 4px;
   padding: 7px;
   display: flex;
   align-items: center;
@@ -148,7 +147,7 @@ export const TextItemCart = styled.div<{ active: boolean }>`
   text-align: center;
   border: 1px solid #000000;
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: 12px;
+  font-size: 10px;
   transition: 0.2s;
   background-color: ${props => props.active ? '#000000': '#ffffff'};
   color: ${props => props.active ? '#ffffff' : '#000000'};
