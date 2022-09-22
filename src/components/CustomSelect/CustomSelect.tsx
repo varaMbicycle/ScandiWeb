@@ -4,8 +4,8 @@ import {DropDownSelectMoney, SelectMoneyContainer, ToggleSelectMoney} from "../H
 import {getAllCurrencies} from "../../queries";
 
 interface IProps {
-	value: any;
-	onChange: (value: any) => void;
+	value: string;
+	onChange: (value: string) => void;
 	children?: React.ReactNode;
 }
 
@@ -13,7 +13,7 @@ interface IState {
 	isOpen: boolean;
 }
 
-export const SelectContext = React.createContext((value: any) => {
+export const SelectContext = React.createContext((value: string) => {
 });
 
 class CustomSelect extends Component<IProps, IState> {
@@ -44,7 +44,7 @@ class CustomSelect extends Component<IProps, IState> {
 		if(this.toggleRef.current) this.toggleRef.current.style.transform = `rotate(${0}deg`;
 		this.setState({isOpen: false})
 	}
-	handleChange = (value: any) => {
+	handleChange = (value: string) => {
 		this.props.onChange(value)
 		this.handleClose()
 	}

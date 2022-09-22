@@ -2,12 +2,8 @@ import React, {Component} from 'react';
 import Navigation from "./components/Navigation/Navigation";
 import UserBar from "./components/UserBar/UserBar";
 import {AppBar, StyledNavigation} from './styled'
-import {ICategories} from "../../Interfaces";
 
-class Header extends Component<any, any> {
-	constructor(props: ICategories[]) {
-		super(props);
-	}
+class Header extends Component<any> {
 	render() {
 		return (
 			<AppBar>

@@ -3,6 +3,32 @@ import styled from "styled-components";
 export const CartProductContainer = styled.section`
   display: flex;
   justify-content: space-between;
+  position: relative;
+  
+  > button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem;
+    font-size: 16px;
+    font-weight: 700;
+    position: absolute;
+    right: -0.75rem;
+    top: 0.75rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    color: rgba(79, 169, 85, 0.58);
+    border: 1px solid rgba(0, 0, 0, 0.27);
+    background-color: #ffffff;
+    transition: 0.2s;
+
+    :hover {
+      cursor: pointer;
+      color: rgba(30, 61, 34, 0.58);
+      border: 1px solid rgba(0, 0, 0, 0.35);
+      background-color: #e7e7e7;
+    }
 `
 export const CartProductDescription = styled.section`
   margin: 24px 0;

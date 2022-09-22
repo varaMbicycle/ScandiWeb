@@ -16,6 +16,7 @@ import ImgContainer from "./components/ImgContainer/ImgContainer";
 import {connect} from 'react-redux';
 import {mapDispatchToProps, mapStateToProps} from "../../store/maps";
 import {changeProductForBasket} from "../../utils/utils";
+import { IAttributes, IPrice } from "../../Interfaces";
 
 class CardPage extends Component<any, any> {
 	constructor(props: any) {
@@ -23,22 +24,28 @@ class CardPage extends Component<any, any> {
 		this.state = {}
 	}
 
-	handleChangeItem = (attributes: any)=>{
-		console.log(attributes);
-		this.setState({...this.state, attributes: [...attributes]})
+	handleChangeItem = (attributes: IAttributes) => {
+		const p = this.state?.id ? {...this.state} : changeProductForBasket(this.props.data.product);
+		const attr = p.attributes.map((attribute: IAttributes)=> {
+			if(attribute.id === attributes.id){
+				attribute.activeItem = attributes.index
+			}
+			return attribute;
+		})
+		this.setState({...p, attributes: [...attr]})
 	}
-	handleAddToBasket = ()=>{
-		console.log(this.props);
-		this.props.add(changeProductForBasket(this.props.data.product))
+	handleAddToBasket = () => {
+		const productForCart = this.state?.id ? this.state : changeProductForBasket(this.props.data.product)
+		this.props.add(productForCart);
 	}
+
 	render() {
 		if (!this.props.data.product) return <div>...Loading</div>
 
 		const product = changeProductForBasket(this.props.data.product);
 		const {gallery, brand, name, description, attributes, prices} = product;
 		const currentCurrency = localStorage.getItem('currentCurrency');
-		const index = prices?.findIndex((price: any) => price.currency.symbol === currentCurrency) || 0
-
+		const index = prices?.findIndex((price: IPrice) => price.currency.symbol === currentCurrency) || 0
 
 		return (
 			<ProductContainer>
@@ -48,16 +55,17 @@ class CardPage extends Component<any, any> {
 						<H3>{brand}</H3>
 						<h4>{name}</h4>
 						<SelectionPanel>
-							{!!attributes.length && <div>{attributes.map((attribute: any, i: number, arr: any) => (
+							{!!attributes.length && <div>{attributes.map((attribute: IAttributes, i: number, arr: IAttributes[]) => (
 									<SelectionsItemsContainer
 										handleChangeItem={this.handleChangeItem}
+										active={this.state?.id ? this.state.attributes[i].activeItem : 0}
 										selectItem={this.props.selectItem}
-										product={this.state.id ? this.state : changeProductForBasket(this.props.data.product)}
+										product={product}
 										item={arr[i].id}
 										attributes={arr[i]}
-										// attributes={arr}
 										type={arr[i].type}
-										key={uuidv4()}/>
+										key={uuidv4()}
+									/>
 								)
 							)}
 							</div>}

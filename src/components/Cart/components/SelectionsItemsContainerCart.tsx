@@ -1,11 +1,9 @@
 import React, {Component, memo} from 'react';
 import {v4 as uuidv4} from "uuid";
 import {StyledSelectionsItemsContainerCart, SwatchItemCart, TextItemCart} from "./CartOverlay/styled";
+import {IAttributes} from "../../../Interfaces";
 
-class SelectionsItemsContainerCart extends Component<any, any> {
-	constructor(props: any) {
-		super(props);
-	}
+class SelectionsItemsContainerCart extends Component<any> {
 
 	handleChangeActiveItem = (event: any) => {
 		this.props.selectItem(this.props.product,this.props.item, event.target.id);
@@ -18,7 +16,7 @@ class SelectionsItemsContainerCart extends Component<any, any> {
 				<h5>{attribute.name + ':'}</h5>
 				<StyledSelectionsItemsContainerCart>
 					{this.props.type === "text" ?
-						attribute.items.map((item:any, i: number) => <TextItemCart
+						attribute.items.map((item: IAttributes, i: number) => <TextItemCart
 							onClick={this.handleChangeActiveItem}
 							id={item.id}
 							active={i === this.props.attributes.activeItem}
@@ -26,7 +24,7 @@ class SelectionsItemsContainerCart extends Component<any, any> {
 						>
 							{item.value}
 						</TextItemCart>) :
-						attribute.items.map((item:any, i: number) => <SwatchItemCart
+						attribute.items.map((item: any, i: number) => <SwatchItemCart
 							onClick={this.handleChangeActiveItem}
 							color={item.value}
 							active={i === this.props.attributes.activeItem}

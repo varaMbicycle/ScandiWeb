@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
 import {ImgSliderContainer} from "./styled";
 
-class ImgSlider extends Component<any, any> {
-	constructor(props: any) {
-		super(props);
-	}
+class ImgSlider extends Component<any> {
 
 	handleSlideRight = (event: any) => {
 		this.props.moveRight(event.target.id)

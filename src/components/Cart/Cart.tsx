@@ -5,12 +5,21 @@ import Modal from "./Modal";
 import CartOverlay from "./components/CartOverlay/CartOverlay";
 import { connect } from "react-redux"
 import {mapDispatchToProps, mapStateToProps} from "../../store/maps";
+import {pushToLocalStorage} from "../../utils/utils";
 
+interface IState {
+	isOpen: boolean
+}
 
-class Cart extends Component<any, any> {
-	state: any = {
-		isOpen: false
+class Cart extends Component<any, IState> {
+	constructor(props: any) {
+		super(props);
+		this.state = {
+			isOpen: false
+		}
 	}
+
+
 	handleOpen = () => {
 		document.body.style.position = 'fixed';
 		!this.state.isOpen && this.setState({isOpen: true})
@@ -18,6 +27,12 @@ class Cart extends Component<any, any> {
 	handleClose = () => {
 		document.body.style.position = 'static';
 		this.setState({isOpen: false})
+	}
+	componentDidMount() {
+		pushToLocalStorage(this.props.cart);
+	}
+	componentDidUpdate() {
+		pushToLocalStorage(this.props.cart);
 	}
 
 	render() {
@@ -37,6 +52,7 @@ class Cart extends Component<any, any> {
 							handleClose={this.handleClose}
 							onIncrement={this.props.incrementQuantity}
 							onDecrement={this.props.decrementQuantity}
+							onDelete={this.props.del}
 							selectItem={this.props.selectItem}
 						/>
 					</CartBackground>

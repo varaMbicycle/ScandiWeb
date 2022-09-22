@@ -11,6 +11,7 @@ import {v4 as uuidv4} from "uuid";
 import {getAllCurrenciesWithCategories} from "./queries";
 import CardPage from "./components/CardPage/CardPage";
 import CartPage from "./components/CartPage/CartPage";
+import {ICategory} from "./Interfaces";
 
 
 class App extends Component<any> {
@@ -32,6 +33,8 @@ class App extends Component<any> {
 
 	render() {
 		const {categories, currencies} = this.props.data;
+		const currenCurrency = localStorage.getItem('currentCurrency');
+		console.log(this.props);
 		return (
 			<div className="App">
 				<BrowserRouter>
@@ -42,7 +45,7 @@ class App extends Component<any> {
 					/>
 					<Routes>
 						{categories && categories.map(
-							({name}: any) => (
+							({name}: ICategory) => (
 									<Route
 										key={uuidv4()}
 										path={name}
@@ -54,7 +57,7 @@ class App extends Component<any> {
 						<Route
 							key={uuidv4()}
 							path={'cart'}
-							element={<CartPage/>}
+							element={<CartPage currenCurrency={currenCurrency}/>}
 						/>
 						<Route
 							key={uuidv4()}

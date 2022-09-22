@@ -2,7 +2,11 @@ import React, {Component, memo} from 'react';
 import {ImagesBlock, MainImg, StyledImg, StyledImgContainer} from "../../styled";
 import {v4 as uuidv4} from "uuid";
 
-class ImgContainer extends Component<any, any> {
+interface IState {
+	currentImg: string
+}
+
+class ImgContainer extends Component<any, IState > {
 	constructor(props:any) {
 		super(props);
 		this.state = {
@@ -10,7 +14,7 @@ class ImgContainer extends Component<any, any> {
 		}
 	}
 	handleChangeImg = (event: any) => {
-		this.setState({...this.state, currentImg: event.target.id})
+		this.setState({...this.state, currentImg: event?.target?.id})
 	}
 
 	render() {

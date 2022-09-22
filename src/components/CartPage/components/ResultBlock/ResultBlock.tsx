@@ -2,14 +2,16 @@ import React, {Component} from 'react';
 import {H5} from "../../../../styled";
 import CustomButton from "../../../CustomButton/CustomButton";
 import {CartPageResultBlock} from "../../styled";
+import {IPrice} from "../../../../Interfaces";
 
 class ResultBlock extends Component<any> {
 	render() {
 		const {currentCurrency} = this.props;
 		const {cart} = this.props;
 		const total = cart.reduce((quantity: number, product: any) => {
-			const amount = product.prices.find((price: any) => price.currency.symbol === currentCurrency).amount;
-			return quantity += amount;
+			const amount = product.prices.find((price: IPrice) => price.currency.symbol === currentCurrency).amount;
+			const sum = amount * product.quantity;
+			return quantity += sum;
 		}, 0);
 		const tax = (total * 0.21);
 		const quantity = cart.reduce((quantity: number, product: any) => (

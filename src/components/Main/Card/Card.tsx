@@ -5,8 +5,10 @@ import {NavLink} from "react-router-dom";
 import { connect } from 'react-redux';
 import {mapDispatchToProps, mapStateToProps} from "../../../store/maps";
 import {changeProductForBasket} from "../../../utils/utils";
+import {IPrice} from "../../../Interfaces";
 
 class Card extends Component<any> {
+
 	handleAddToBasket = (event: React.MouseEvent): void=>{
 		event.preventDefault();
 		this.props.add(changeProductForBasket(this.props.card));
@@ -15,7 +17,7 @@ class Card extends Component<any> {
 	render() {
 		const currentCurrency = localStorage.getItem('currentCurrency');
 		const prices = this.props.card.prices;
-		const price = prices.find((el: any) => el.currency.symbol === currentCurrency)
+		const price = prices.find((el: IPrice) => el.currency.symbol === currentCurrency)
 		const {inStock,id, name, gallery } = this.props.card;
 		if(!this.props.card.prices) return <div>Loading...</div>
 		return (
