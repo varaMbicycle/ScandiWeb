@@ -31,7 +31,7 @@ export const StyledImg = styled.div<{active: boolean}>`
 
     :active {
       transform: ${props => props.active ? 'none': 'scale(1)'};
-      // box-shadow: ${props => !!props.active ? 'none': '0 0.5px 4px 1px rgba(34, 60, 80, 0.2)'};
+      box-shadow: ${props => !!props.active ? 'none': '0 0.5px 4px 1px rgba(34, 60, 80, 0.2)'};
     }
   }
 `
@@ -110,11 +110,7 @@ export const TextItem = styled.div<{ active: boolean }>`
 
   :hover {
     cursor: pointer;
-<<<<<<< HEAD
-    transform: ${props => props.active ? 'none' : 'scale(1.075)'};
-=======
     transform: ${props => props.active ? 'scale(1)' : 'scale(1.075)'};
->>>>>>> 1f997845355a4cbae21c8a8438d592b8e62435c8
   }
   :active{
     transform: scale(1);
@@ -131,11 +127,8 @@ export const SwatchItem = styled.div<{ color: string, active: boolean }>`
   transition:0.2s;
   :hover {
     cursor: pointer;
-<<<<<<< HEAD
-    transform: ${props => props.active ? 'none' : 'scale(1.25)'};
-=======
     transform: ${props => props.active ? 'scale(1)' : 'scale(1.1)'};
->>>>>>> 1f997845355a4cbae21c8a8438d592b8e62435c8
+
   }
   :active{
     transform: scale(1);
