@@ -1,4 +1,4 @@
-import React, {Component, memo} from 'react';
+import React, {Component} from 'react';
 import {
 	CardDescriptionBlock,
 	Description,
@@ -13,18 +13,40 @@ import {v4 as uuidv4} from "uuid";
 import SelectionsItemsContainer from "./components/SelectionsItemsContainer/SelectionsItemsContainer";
 import withParams from "../../utils";
 import ImgContainer from "./components/ImgContainer/ImgContainer";
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {mapDispatchToProps, mapStateToProps} from "../../store/maps";
+import {changeProductForBasket} from "../../utils/utils";
+import { IAttributes, IPrice } from "../../Interfaces";
 
 class CardPage extends Component<any, any> {
 	constructor(props: any) {
 		super(props);
+		this.state = {}
 	}
+
+	handleChangeItem = (attributes: IAttributes) => {
+		const p = this.state?.id ? {...this.state} : changeProductForBasket(this.props.data.product);
+		const attr = p.attributes.map((attribute: IAttributes)=> {
+			if(attribute.id === attributes.id){
+				attribute.activeItem = attributes.index
+			}
+			return attribute;
+		})
+		this.setState({...p, attributes: [...attr]})
+	}
+	handleAddToBasket = () => {
+		const productForCart = this.state?.id ? this.state : changeProductForBasket(this.props.data.product)
+		this.props.add(productForCart);
+	}
+
 	render() {
-		const {gallery, brand, name, description, attributes, prices} = this.props.data.product || {};
-		const currentCurrency = localStorage.getItem('currentCurrency');
-		const index = prices?.findIndex((price: any) => price.currency.symbol === currentCurrency) || 0
 		if (!this.props.data.product) return <div>...Loading</div>
+
+		const product = changeProductForBasket(this.props.data.product);
+		const {gallery, brand, name, description, attributes, prices} = product;
+		const currentCurrency = localStorage.getItem('currentCurrency');
+		const index = prices?.findIndex((price: IPrice) => price.currency.symbol === currentCurrency) || 0
+
 		return (
 			<ProductContainer>
 				<ImgContainer gallery={gallery}/>
@@ -33,8 +55,17 @@ class CardPage extends Component<any, any> {
 						<H3>{brand}</H3>
 						<h4>{name}</h4>
 						<SelectionPanel>
-							{!!attributes.length && <div>{attributes.map((attribute: any, i: number, arr: any) => (
-									<SelectionsItemsContainer attributes={arr[i]} type={arr[i].type} key={uuidv4()}/>
+							{!!attributes.length && <div>{attributes.map((attribute: IAttributes, i: number, arr: IAttributes[]) => (
+									<SelectionsItemsContainer
+										handleChangeItem={this.handleChangeItem}
+										active={this.state?.id ? this.state.attributes[i].activeItem : 0}
+										selectItem={this.props.selectItem}
+										product={product}
+										item={arr[i].id}
+										attributes={arr[i]}
+										type={arr[i].type}
+										key={uuidv4()}
+									/>
 								)
 							)}
 							</div>}
@@ -47,7 +78,7 @@ class CardPage extends Component<any, any> {
 						<CustomButton
 							color='secondary'
 							text='ADD TO CART'
-							handleClick={() => this.props.add(this.props.data.product)}/>
+							handleClick={this.handleAddToBasket}/>
 						<Description dangerouslySetInnerHTML={{__html: description}}/>
 					</CardDescriptionBlock>
 				</MainCardBlock>

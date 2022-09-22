@@ -4,8 +4,13 @@ import CustomSelect from "../../../CustomSelect/CustomSelect";
 import CustomOption from "../../../CustomSelect/CustomOption";
 import Cart from "../../../Cart/Cart";
 import {v4 as uuidv4} from "uuid";
+import {ICurrency} from "../../../../Interfaces";
 
-class UserBar extends Component<any, any> {
+interface IState {
+	currentCurrency: string
+}
+
+class UserBar extends Component<any, IState> {
 	constructor(props:any) {
 		super(props)
 		this.state = {
@@ -24,7 +29,7 @@ class UserBar extends Component<any, any> {
 		return (
 			<FlexContainer>
 				<CustomSelect value={this.state.currentCurrency} onChange={this.handleChangeCurrency}>
-					{currencies.map((currency:any) => (
+					{currencies.map((currency: ICurrency) => (
 						<CustomOption value={currency.symbol} key={uuidv4()}>
 							{currency.symbol + ' ' + currency.label}
 						</CustomOption>

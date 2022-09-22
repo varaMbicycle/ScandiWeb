@@ -19,17 +19,12 @@ class Navigation extends Component<any, IState> {
 		}
 	}
 
-	handleActiveTab = (activeTab: string) => {
-		localStorage.setItem('activeTab', activeTab);
-		this.setState({...this.state, path: activeTab})
-	}
-
 	render() {
 		const {categories} = this.props.data;
 		return (
 			<ListNavigation>
 				{categories && categories.map(
-					({name}: any) => (
+					({name}: { name: string }) => (
 						<NavLink to={name}
 						         key={uuidv4()}
 						         style={({isActive}) => ({

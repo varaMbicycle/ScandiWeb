@@ -1,33 +1,38 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {mapDispatchToProps, mapStateToProps} from "../../store/maps";
-import {H2, H3, H5} from '../../styled';
-import {CartPageContainer} from "./styled";
+import { H3 } from '../../styled';
+import {CartPageContainer, Message} from "./styled";
 import {v4 as uuidv4} from "uuid";
 import ResultBlock from "./components/ResultBlock/ResultBlock";
 import CartPageProduct from "./components/CartPageProduct/CartPageProduct";
+import {IProduct} from "../../Interfaces";
 
-class CartPage extends Component<any, any> {
+class CartPage extends Component<any> {
+
 	render() {
 		const {cart} = this.props;
 		const currentCurrency = localStorage.getItem('currentCurrency');
-		if (!cart.length) {
-			return <H2>Cart is empty</H2>
-		}
+		if (!cart.length) return <Message>Cart is empty</Message>
+		console.log(this.props);
 		return (
 			<CartPageContainer>
 				<H3>CART</H3>
 				<div>
-					{cart.map((product: any) => (
-						<>
+					{cart.map((product: IProduct) => (
+						<React.Fragment key={uuidv4()}>
 							<hr/>
 							<CartPageProduct
+								currentCurrency={localStorage.getItem('currentCurrency')}
 								product={product}
 								onIncrement={this.props.incrementQuantity}
 								onDecrement={this.props.decrementQuantity}
-								key={uuidv4()}
+								onDelete={this.props.del}
+								moveLeft={this.props.moveLeft}
+								moveRight={this.props.moveRight}
+								selectItem={this.props.selectItem}
 							/>
-						</>
+						</React.Fragment>
 
 					))}
 				</div>

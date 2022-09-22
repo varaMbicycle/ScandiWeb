@@ -6,21 +6,24 @@ import {v4 as uuidv4} from "uuid";
 import { H6 } from '../../../../styled';
 import { StyledTotalCostDescription } from '../../../CustomButton/styled';
 import { NavLink } from 'react-router-dom';
+import {IAttributes, IPrice, IProduct} from "../../../../Interfaces";
 
 
 interface ICartOverlay {
 	handleClose: () => void;
 	onIncrement: (event: any) => void;
 	onDecrement: (event: any) => void;
+	selectItem: ()=>void;
 	products: any;
 	currentCurrency: string;
+	onDelete: (id: string) => void;
 }
 
 class CartOverlay extends Component<ICartOverlay> {
 	render() {
 		const currentCurrency = this.props.currentCurrency
 		const totalCost = this.props.products.reduce((total: number, product: any) => {
-			return total += (product.prices.find((price: any) => {
+			return total += (product?.prices.find((price: IPrice) => {
 				return price.currency.symbol === currentCurrency
 			}).amount) * product.quantity
 		}, 0)
@@ -29,12 +32,14 @@ class CartOverlay extends Component<ICartOverlay> {
 			<StyledCartOverlay>
 				{quantity ? <H6>My Bag, {quantity} {quantity !== 1 ? 'items' : 'item'}</H6> : <H6>My Bag is empty</H6>}
 				<CartOverlayProductsContainer>
-					{this.props.products.map((product: any) => (
+					{this.props.products.map((product: IProduct) => (
 						<CartOverlayCard
 							key={uuidv4()}
 							product={product}
 							onIncrement={this.props.onIncrement}
 							onDecrement={this.props.onDecrement}
+							onDelete={this.props.onDelete}
+							selectItem={this.props.selectItem}
 						/>
 					))}
 				</CartOverlayProductsContainer>

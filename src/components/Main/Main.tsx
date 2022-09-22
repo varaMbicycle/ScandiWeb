@@ -4,10 +4,7 @@ import {MainStyled, SectionStyled} from "./styled";
 import Card from "./Card/Card";
 import {getProductsOfCategory} from "../../queries";
 import {v4 as uuidv4} from "uuid";
-
-interface IPropsMain {
-	category: string
-}
+import {IProduct} from "../../Interfaces";
 
 class Main extends Component<any> {
 	constructor(props: any) {
@@ -29,7 +26,7 @@ class Main extends Component<any> {
 			<MainStyled>
 				<H2>{this.props.name.toUpperCase()}</H2>
 				<SectionStyled>
-					{this.props.data.category && this.props.data.category.products.map((item: any) => (
+					{this.props.data.category && this.props.data.category.products.map((item: IProduct) => (
 						<Card card={item}
 						      key={uuidv4()}
 						/>

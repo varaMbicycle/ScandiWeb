@@ -34,10 +34,37 @@ export const CartOverlayProductsContainer = styled.div`
 `
 export const StyledCartOverlayCard = styled.div`
   display: flex;
+  position: relative;
   width: 100%;
-  padding: 20px 0;
+  padding: 20px 5px;
   box-shadow: 0px 11px 21px -13px rgba(34, 60, 80, 0.2);
   margin-bottom: 12px;
+
+  > button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem;
+    font-size: 12px;
+    font-weight: 700;
+    position: absolute;
+    right: 0.25rem;
+    top: 0.75rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    color: rgba(79, 169, 85, 0.58);
+    border: 1px solid rgba(0, 0, 0, 0.27);
+    background-color: #ffffff;
+    transition: 0.2s;
+
+    :hover {
+      cursor: pointer;
+      color: rgba(30, 61, 34, 0.58);
+      border: 1px solid rgba(0, 0, 0, 0.35);
+      background-color: #e7e7e7;
+    }
+  }
 `
 export const CartOverlayProductDescription = styled.div`
   width: 136px;
@@ -75,7 +102,7 @@ export const CartOverlayCounterBlock = styled.div`
   }
 `
 export const CartOverImgBlock = styled.div`
-  width: 121px;
+  width: 100px;
   img{
     height: 100%;
     width: 100%;
@@ -101,7 +128,6 @@ export const SmallCardCost = styled.p`
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
-  //line-height: 160%;
 `
 export const SizeBlockStyled = styled.div`
 
@@ -111,9 +137,9 @@ export const StyledSelectionsItemsContainerCart = styled.div`
   margin-bottom: 10px;
 `
 export const TextItemCart = styled.div<{ active: boolean }>`
-  min-width: 25px;
+  min-width: 30px;
   min-height: 25px;
-  margin-right: 6px;
+  margin-right: 4px;
   padding: 7px;
   display: flex;
   align-items: center;
@@ -121,7 +147,7 @@ export const TextItemCart = styled.div<{ active: boolean }>`
   text-align: center;
   border: 1px solid #000000;
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: 12px;
+  font-size: 10px;
   transition: 0.2s;
   background-color: ${props => props.active ? '#000000': '#ffffff'};
   color: ${props => props.active ? '#ffffff' : '#000000'};
