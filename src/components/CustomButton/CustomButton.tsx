@@ -5,6 +5,7 @@ interface ICustomButton {
 	color: string
 	text: string
 	handleClick: ()=> void
+	disabled?: boolean
 }
 class CustomButton extends Component<ICustomButton> {
 	constructor(props:ICustomButton) {
@@ -12,7 +13,7 @@ class CustomButton extends Component<ICustomButton> {
 	}
 	render() {
 		return (
-			<StyledCustomButton color={this.props.color} onClick={this.props.handleClick}>
+			<StyledCustomButton color={this.props.color} onClick={this.props.handleClick} disabled={this.props.disabled || false}>
 				{this.props.text}
 			</StyledCustomButton>
 		);

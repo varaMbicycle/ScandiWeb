@@ -44,6 +44,25 @@ export const MainCardBlock = styled.div`
 `
 export const MainImg = styled.div`
   width: 560px;
+  position: relative;
+  margin-left: 0.35rem;
+
+  div {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    display: flex;
+    padding-top: 250px;
+    justify-content: center;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.74);
+    color: rgba(141, 143, 154, 0.64);
+    font-size: 48px;
+    font-family: "Roboto Regular", sans-serif;
+  }
 
   img {
     width: 100%;

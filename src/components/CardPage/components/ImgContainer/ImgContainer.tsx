@@ -3,7 +3,8 @@ import {ImagesBlock, MainImg, StyledImg, StyledImgContainer} from "../../styled"
 import {v4 as uuidv4} from "uuid";
 
 interface IState {
-	currentImg: string
+	currentImg: string;
+	isStock?: boolean;
 }
 
 class ImgContainer extends Component<any, IState > {
@@ -35,6 +36,7 @@ class ImgContainer extends Component<any, IState > {
 					))}
 				</ImagesBlock>
 				<MainImg>
+					{this.props.isStock && <div>OUT OF STOCK</div>}
 					<img src={this.state.currentImg || gallery[0]} alt={gallery[0]}/>
 				</MainImg>
 			</StyledImgContainer>

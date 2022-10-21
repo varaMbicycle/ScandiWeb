@@ -6,7 +6,7 @@ import {v4 as uuidv4} from "uuid";
 import { H6 } from '../../../../styled';
 import { StyledTotalCostDescription } from '../../../CustomButton/styled';
 import { NavLink } from 'react-router-dom';
-import {IAttributes, IPrice, IProduct} from "../../../../Interfaces";
+import { IPrice, IProduct } from "../../../../Interfaces";
 
 
 interface ICartOverlay {
@@ -20,6 +20,23 @@ interface ICartOverlay {
 }
 
 class CartOverlay extends Component<ICartOverlay> {
+
+	dropDownRef = React.createRef<HTMLDivElement>();
+
+	clickOutside = (event: MouseEvent) => {
+		if (this.dropDownRef.current && !this.dropDownRef.current.contains(event.target as Node)) {
+			this.props.handleClose()
+		}
+	}
+
+	componentDidMount() {
+		document.addEventListener("mousedown", this.clickOutside)
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener("mousedown", this.clickOutside)
+	}
+
 	render() {
 		const currentCurrency = this.props.currentCurrency
 		const totalCost = this.props.products.reduce((total: number, product: any) => {
@@ -29,7 +46,7 @@ class CartOverlay extends Component<ICartOverlay> {
 		}, 0)
 		const quantity = this.props.products.length;
 		return (
-			<StyledCartOverlay>
+			<StyledCartOverlay ref={this.dropDownRef}>
 				{quantity ? <H6>My Bag, {quantity} {quantity !== 1 ? 'items' : 'item'}</H6> : <H6>My Bag is empty</H6>}
 				<CartOverlayProductsContainer>
 					{this.props.products.map((product: IProduct) => (

@@ -22,7 +22,7 @@ class CartOverlayCard extends Component<any> {
 			<StyledCartOverlayCard>
 				<CartOverlayProductDescription>
 					<SmallCardDescription>{this.props.product.name}</SmallCardDescription>
-					<SmallCardCost>{currentCurrency} {price}</SmallCardCost>
+					<SmallCardCost>{currentCurrency} {price.toFixed(2)}</SmallCardCost>
 					<SmallCardDescription>
 						{!!attributes.length &&
 							attributes.map((attribute: IAttributes, i: number, arr: IAttributes[]) => (
@@ -45,7 +45,6 @@ class CartOverlayCard extends Component<any> {
 				<CartOverImgBlock>
 					<img src={this.props.product.gallery[0]} alt={this.props.product.name}/>
 				</CartOverImgBlock>
-				<button id={this.props.product.id} onClick={this.handleDelete}>X</button>
 			</StyledCartOverlayCard>
 		);
 	}

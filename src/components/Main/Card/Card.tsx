@@ -22,14 +22,13 @@ class Card extends Component<any> {
 		if(!this.props.card.prices) return <div>Loading...</div>
 		return (
 			<CardStyled inStock={inStock}>
-				<p></p>
 				<NavLink to={id}>
 					<div>
 						<div>{!inStock && 'OUT OF STOCK'}</div>
 						<img src={gallery[0]} width={300} alt="card"/>
 					</div>
 					<H5>{name}</H5>
-					<H4>{price.currency.symbol + ' ' + price.amount}</H4>
+					<H4>{price.currency.symbol + ' ' + price.amount.toFixed(2)}</H4>
 					{inStock &&
 						<button onClick={this.handleAddToBasket}>
 							<img src={process.env.PUBLIC_URL + "/img/cart-white.svg"} alt="cart"/>

@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import {SelectOptions} from "../Header/components/UserBar/styled";
 import {DropDownSelectMoney, SelectMoneyContainer, ToggleSelectMoney} from "../Header/components/UserBar/styled";
-import {getAllCurrencies} from "../../queries";
 
 interface IProps {
 	value: string;
 	onChange: (value: string) => void;
-	children?: React.ReactNode;
+	children?: any;
 }
 
 interface IState {
@@ -18,7 +17,7 @@ export const SelectContext = React.createContext((value: string) => {
 
 class CustomSelect extends Component<IProps, IState> {
 	state: IState = {
-		isOpen: false
+		isOpen: false,
 	}
 
 	dropDownRef = React.createRef<HTMLDivElement>();
@@ -50,6 +49,8 @@ class CustomSelect extends Component<IProps, IState> {
 	}
 
 	render() {
+		console.log(this.props);
+		const chosen = this.props.children.map((el:any) => el.props.value).findIndex((el:any)=> el ===localStorage.getItem('currentCurrency'));
 		return (
 			<SelectContext.Provider value={this.handleChange}>
 				<SelectMoneyContainer ref={this.dropDownRef}>
@@ -63,7 +64,7 @@ class CustomSelect extends Component<IProps, IState> {
 						</span>
 					</ToggleSelectMoney>
 					<DropDownSelectMoney isOpen={this.state.isOpen}>
-						<SelectOptions>
+						<SelectOptions choose={chosen + 1}>
 							{this.props.children}
 						</SelectOptions>
 					</DropDownSelectMoney>

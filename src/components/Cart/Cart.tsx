@@ -19,14 +19,15 @@ class Cart extends Component<any, IState> {
 		}
 	}
 
-
 	handleOpen = () => {
 		document.body.style.position = 'fixed';
+		document.body.style.right = '8px';
 		!this.state.isOpen && this.setState({isOpen: true})
 	}
 	handleClose = () => {
-		document.body.style.position = 'static';
+
 		this.setState({isOpen: false})
+		document.body.style.position = 'static';
 	}
 	componentDidMount() {
 		pushToLocalStorage(this.props.cart);
@@ -36,13 +37,18 @@ class Cart extends Component<any, IState> {
 	}
 
 	render() {
+		const count = this.props.cart.reduce((count: number, product: any) => {
+			count += product.quantity;
+			return count
+		} , 0);
+
 		return (
 			<CartContainer>
 				<CartButton
-					onClick={this.state.isOpen ? this.handleClose : this.handleOpen}
+					onClick={this.handleOpen}
 				>
 					<img src={process.env.PUBLIC_URL + "/img/cart.svg"} alt="cart"/>
-					<CartCounter count={this.props.cart.length}>{this.props.cart.length}</CartCounter>
+					<CartCounter count={this.props.cart.length}>{count}</CartCounter>
 				</CartButton>
 				<Modal>
 					<CartBackground isOpen={this.state.isOpen}>

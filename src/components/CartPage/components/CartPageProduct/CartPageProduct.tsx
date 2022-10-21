@@ -9,10 +9,6 @@ import {IAttributes, IPrice} from "../../../../Interfaces";
 
 class CartPageProduct extends Component<any> {
 
-	handleDelete = (event: any)=> {
-		this.props.onDelete(event.target.id);
-	}
-
 	render() {
 		const {prices, attributes, brand, name, gallery, id} = this.props.product;
 		const {currentCurrency} = this.props;
@@ -22,7 +18,7 @@ class CartPageProduct extends Component<any> {
 				<CartProductDescription>
 					<h3>{brand}</h3>
 					<h4>{name}</h4>
-					<h5>{currentCurrency} {currency}</h5>
+					<h5>{currentCurrency} {currency.toFixed(2)}</h5>
 					<SelectionPanel>
 						{!!attributes.length && <div>{attributes.map((attribute: IAttributes, i: number, arr: IAttributes[]) => (
 								<SelectionsItemsContainer
@@ -53,7 +49,6 @@ class CartPageProduct extends Component<any> {
 						activeImg={this.props.product.activeImg}
 					/>
 				</CounterImgContainer>
-				<button id={id} onClick={this.handleDelete}>X</button>
 			</CartProductContainer>
 		);
 	}

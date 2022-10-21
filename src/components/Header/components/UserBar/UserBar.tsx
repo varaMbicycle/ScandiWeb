@@ -35,7 +35,7 @@ class UserBar extends Component<any, IState> {
 						</CustomOption>
 					))}
 				</CustomSelect>
-				<Cart value={this.state.currentCurrency} onChange={this.handleChangeCurrency}/>
+				<Cart value={this.state.currentCurrency} onClick={this.handleChangeCurrency}/>
 			</FlexContainer>
 		);
 	}

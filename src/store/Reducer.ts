@@ -19,8 +19,10 @@ export const cartReducer = (state = initialState, action: any): { products: IPro
 			if (elementToDecrease?.quantity !== 1) {
 				elementToDecrease.quantity -= 1;
 				return {products: [...state.products]}
+			} else{
+				const productsAfterDelete = state.products.filter((product: IProduct) => product.id !== action.payload)
+				return {...state, products: [...productsAfterDelete]}
 			}
-			return {...state}
 		case 'SLIDE_TO_RIGHT':
 			const elementToMoveSlideRight = state.products.find(({id}) => id === action.payload);
 			if (elementToMoveSlideRight?.activeImg < elementToMoveSlideRight?.gallery.length - 1) elementToMoveSlideRight.activeImg += 1
@@ -39,9 +41,6 @@ export const cartReducer = (state = initialState, action: any): { products: IPro
 			const products = [...state.products];
 			products[currentProductIndex].attributes[currentAttributeIndex].activeItem = activeAttributeIndex;
 			return {...state, products}
-		case 'DEL_FROM_CART':
-			const productsAfterDelete = state.products.filter((product: IProduct) => product.id !== action.payload)
-			return {...state, products: [...productsAfterDelete]}
 		default:
 			return state
 	}

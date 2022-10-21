@@ -10,19 +10,7 @@ export const CardStyled = styled.div<{ inStock: boolean }>`
   a {
     text-decoration: none;
     color: #1D1F22;
-  }
-
-  > p {
-    display: ${props => props.inStock ? 'none' : 'flex'};
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 2;
-    background-color: rgba(255, 255, 255, 0.56);
+    opacity: ${props => props.inStock ? 1 : 0.4};
   }
 
   img {
@@ -82,8 +70,8 @@ export const CardStyled = styled.div<{ inStock: boolean }>`
   }
 
   :hover {
-    box-shadow: ${props => props.inStock ? '0px 1px 16px 4px rgba(34, 60, 80, 0.2)' : 'none'};
-    cursor: ${props => props.inStock ? 'pointer' : 'default'};
+    box-shadow: 0px 1px 16px 4px rgba(34, 60, 80, 0.2);
+    cursor: pointer;
   }
 
   :hover button {

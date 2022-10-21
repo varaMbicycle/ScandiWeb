@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ReactHtmlParser from 'react-html-parser';
 import {
 	CardDescriptionBlock,
 	Description,
@@ -43,13 +44,13 @@ class CardPage extends Component<any, any> {
 		if (!this.props.data.product) return <div>...Loading</div>
 
 		const product = changeProductForBasket(this.props.data.product);
-		const {gallery, brand, name, description, attributes, prices} = product;
+		const {gallery, brand, name, description, attributes, prices, inStock} = product;
 		const currentCurrency = localStorage.getItem('currentCurrency');
 		const index = prices?.findIndex((price: IPrice) => price.currency.symbol === currentCurrency) || 0
 
 		return (
 			<ProductContainer>
-				<ImgContainer gallery={gallery}/>
+				<ImgContainer gallery={gallery} isStock={!inStock}/>
 				<MainCardBlock>
 					<CardDescriptionBlock>
 						<H3>{brand}</H3>
@@ -77,9 +78,11 @@ class CardPage extends Component<any, any> {
 						</SelectionPanel>
 						<CustomButton
 							color='secondary'
-							text='ADD TO CART'
-							handleClick={this.handleAddToBasket}/>
-						<Description dangerouslySetInnerHTML={{__html: description}}/>
+							text={inStock ? 'ADD TO CART' : 'OUT OF STOCK'}
+							handleClick={this.handleAddToBasket}
+							disabled={!inStock}
+						/>
+						<Description>{ReactHtmlParser(description)}</Description>
 					</CardDescriptionBlock>
 				</MainCardBlock>
 			</ProductContainer>
