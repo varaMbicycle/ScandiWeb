@@ -18,7 +18,7 @@ class Card extends Component<any> {
 		const currentCurrency = localStorage.getItem('currentCurrency');
 		const prices = this.props.card.prices;
 		const price = prices.find((el: IPrice) => el.currency.symbol === currentCurrency)
-		const {inStock,id, name, gallery } = this.props.card;
+		const {inStock,id, name, gallery, brand } = this.props.card;
 		if(!this.props.card.prices) return <div>Loading...</div>
 		return (
 			<CardStyled inStock={inStock}>
@@ -27,7 +27,7 @@ class Card extends Component<any> {
 						<div>{!inStock && 'OUT OF STOCK'}</div>
 						<img src={gallery[0]} width={300} alt="card"/>
 					</div>
-					<H5>{name}</H5>
+					<H5>{brand} {name}</H5>
 					<H4>{price.currency.symbol + ' ' + price.amount.toFixed(2)}</H4>
 					{inStock &&
 						<button onClick={this.handleAddToBasket}>

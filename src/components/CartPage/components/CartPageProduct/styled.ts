@@ -67,8 +67,10 @@ export const ImgSliderContainer = styled.div`
   display: flex;
   margin-left: 24px;
   position: relative;
-
-  div {
+  z-index: 2;
+  overflow: hidden;
+  
+  div:nth-child(2) {
     position: absolute;
     bottom: 10px;
     right: 10px;
@@ -91,9 +93,14 @@ export const ImgSliderContainer = styled.div`
 
   img {
     transition: 1s;
-    display: block;
     min-width: 100%;
     height: 100%;
     object-fit: contain;
   }
+`
+export const ImgContainer = styled.div`
+  height: 290px;
+  width: 190px;
+  display: flex;
+  transition: 0.4s;
 `

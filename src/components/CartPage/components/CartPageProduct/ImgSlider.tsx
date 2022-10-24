@@ -1,20 +1,48 @@
 import React, {Component} from 'react';
-import {ImgSliderContainer} from "./styled";
+import {ImgContainer, ImgSliderContainer} from "./styled";
 
-class ImgSlider extends Component<any> {
+const IMG_WIDTH = 190;
+const ref = React.createRef<any>();
+class ImgSlider extends Component<any, any> {
+	constructor(props: any) {
+		super(props);
+		this.state = {
+			posX: 0
+		}
+	}
+
+	componentDidMount() {
+		this.setState({posX: this.props.activeImg * IMG_WIDTH * -1})
+	}
 
 	handleSlideRight = (event: any) => {
-		this.props.moveRight(event.target.id)
+		if(this.state.posX > (this.props.gallery.length * IMG_WIDTH * -1 + IMG_WIDTH)){
+			this.setState((prev: any)=> (
+				{...prev, posX: prev.posX -= IMG_WIDTH}
+			))
+			setTimeout(()=> this.props.moveRight(event.target.id), 350)
+		}
 	}
 	handleSlideLeft = (event: any) => {
-		this.props.moveLeft(event.target.id)
+		if(this.state.posX){
+
+			this.setState((prev: any)=> (
+				{...prev, posX: prev.posX += IMG_WIDTH}
+			))
+			setTimeout(()=> this.props.moveLeft(event.target.id), 350)
+		}
 	}
 
 	render() {
-		const img = this.props.gallery[this.props.activeImg]
+		const images = this.props.gallery
 		return (
 			<ImgSliderContainer>
-				<img src={img} alt={img}/>
+				<ImgContainer ref={ref} style={{
+					transform: `translateX(${this.state.posX}px)`
+				}}>
+					{images.map((img: string) => <img src={img} key={img} alt={img}/>)}
+				</ImgContainer>
+
 				{(this.props.gallery.length !== 1) && <div>
 					<button onClick={this.handleSlideLeft} id={this.props.name}>{'<'}</button>
 					<button onClick={this.handleSlideRight} id={this.props.name}>{'>'}</button>
