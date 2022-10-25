@@ -22,7 +22,7 @@ class CartOverlayCard extends Component<any> {
 			<StyledCartOverlayCard>
 				<CartOverlayProductDescription>
 					<SmallCardDescription>{this.props.product.name}</SmallCardDescription>
-					<SmallCardCost>{currentCurrency} {price.toFixed(2)}</SmallCardCost>
+					<SmallCardCost>{currentCurrency}{price.toFixed(2)}</SmallCardCost>
 					<SmallCardDescription>
 						{!!attributes.length &&
 							attributes.map((attribute: IAttributes, i: number, arr: IAttributes[]) => (

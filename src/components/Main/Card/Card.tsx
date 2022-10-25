@@ -28,7 +28,7 @@ class Card extends Component<any> {
 						<img src={gallery[0]} width={300} alt="card"/>
 					</div>
 					<H5>{brand} {name}</H5>
-					<H4>{price.currency.symbol + ' ' + price.amount.toFixed(2)}</H4>
+					<H4>{price.currency.symbol + price.amount.toFixed(2)}</H4>
 					{inStock &&
 						<button onClick={this.handleAddToBasket}>
 							<img src={process.env.PUBLIC_URL + "/img/cart-white.svg"} alt="cart"/>

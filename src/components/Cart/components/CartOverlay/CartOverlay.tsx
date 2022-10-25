@@ -62,7 +62,7 @@ class CartOverlay extends Component<ICartOverlay> {
 				</CartOverlayProductsContainer>
 				{!!quantity && <StyledTotalCostDescription>
 					<H6>Total</H6>
-					<H6>{currentCurrency} {totalCost.toFixed(2)}</H6>
+					<H6>{currentCurrency}{totalCost.toFixed(2)}</H6>
 				</StyledTotalCostDescription>}
 				<CartOverlayButtonsBlock>
 					<NavLink to='/cart'><CustomButton color='primary' text='VIEW BAG' handleClick={this.props.handleClose}/></NavLink>

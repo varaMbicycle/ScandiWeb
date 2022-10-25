@@ -19,13 +19,13 @@ class ResultBlock extends Component<any> {
 		), 0)
 		return (
 			<CartPageResultBlock>
-				<H5>Tax 21%: <span>{currentCurrency} {tax.toFixed(2)}</span></H5>
+				<H5>Tax 21%: <span>{currentCurrency}{tax.toFixed(2)}</span></H5>
 				<H5>Quantity:
 					<span>
 							{quantity}
 						</span>
 				</H5>
-				<H5>Total: <span>{currentCurrency} {total.toFixed(2)}</span></H5>
+				<H5>Total: <span>{currentCurrency}{total.toFixed(2)}</span></H5>
 				<CustomButton color='secondary' text='ORDER' handleClick={() => console.log('order')}/>
 			</CartPageResultBlock>
 		);
