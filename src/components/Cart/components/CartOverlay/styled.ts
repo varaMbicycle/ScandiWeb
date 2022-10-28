@@ -39,6 +39,7 @@ export const StyledCartOverlayCard = styled.div`
   padding: 20px 5px;
   box-shadow: 0px 11px 21px -13px rgba(34, 60, 80, 0.2);
   margin-bottom: 12px;
+  min-height: 160px;
 
   > button {
     display: flex;
