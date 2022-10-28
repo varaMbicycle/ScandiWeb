@@ -6,11 +6,12 @@ import {SelectionPanel} from "../../../CardPage/styled";
 import CartOverlayCounter from "../../../Cart/components/CartOverlay/CartOverlayCounter";
 import ImgSlider from "./ImgSlider";
 import {IAttributes, IPrice} from "../../../../Interfaces";
+import AttributesContainer from "./AttributesContainer";
 
 class CartPageProduct extends Component<any> {
 
 	render() {
-		const {prices, attributes, brand, name, gallery, id} = this.props.product;
+		const {prices, attributes, brand, name, gallery, id, activeImg, quantity} = this.props.product;
 		const {currentCurrency} = this.props;
 		const currency = prices.find((price: IPrice) => price.currency.symbol === currentCurrency).amount;
 		return (
@@ -21,12 +22,12 @@ class CartPageProduct extends Component<any> {
 					<h5>{currentCurrency}{currency.toFixed(2)}</h5>
 					<SelectionPanel>
 						{!!attributes.length && <div>{attributes.map((attribute: IAttributes, i: number, arr: IAttributes[]) => (
-								<SelectionsItemsContainer
+								<AttributesContainer
 									attributes={arr[i]}
 									type={arr[i].type}
 									key={uuidv4()}
 									selectItem={this.props.selectItem}
-									product={this.props.product.id}
+									product={id}
 									item={arr[i].id}
 								/>
 							)
@@ -38,15 +39,15 @@ class CartPageProduct extends Component<any> {
 					<CartOverlayCounter
 						onIncrement={this.props.onIncrement}
 						onDecrement={this.props.onDecrement}
-						value={this.props.product.quantity}
-						id={this.props.product.id}
+						value={quantity}
+						id={id}
 					/>
 					<ImgSlider
 						moveLeft={this.props.moveLeft}
 						moveRight={this.props.moveRight}
 						gallery={gallery}
-						name={this.props.product.id}
-						activeImg={this.props.product.activeImg}
+						name={id}
+						activeImg={activeImg}
 					/>
 				</CounterImgContainer>
 			</CartProductContainer>

@@ -34,7 +34,6 @@ class App extends Component<any> {
 	render() {
 		const {categories, currencies} = this.props.data;
 		const currenCurrency = localStorage.getItem('currentCurrency');
-		console.log(this.props);
 		return (
 			<div className="App">
 				<BrowserRouter>

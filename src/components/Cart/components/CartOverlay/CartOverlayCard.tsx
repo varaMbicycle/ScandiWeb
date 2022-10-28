@@ -7,12 +7,9 @@ import CartOverlayCounter from "./CartOverlayCounter";
 import {v4 as uuidv4} from "uuid";
 import SelectionsItemsContainerCart from '../SelectionsItemsContainerCart';
 import {IAttributes, IPrice} from "../../../../Interfaces";
+import ItemsContainerCart from "../ItemsContainerCart";
 
 class CartOverlayCard extends Component<any> {
-
-	handleDelete = (event: any) => {
-		this.props.onDelete(event.target.id)
-	}
 
 	render() {
 		const currentCurrency = localStorage.getItem('currentCurrency');
@@ -26,7 +23,7 @@ class CartOverlayCard extends Component<any> {
 					<SmallCardDescription>
 						{!!attributes.length &&
 							attributes.map((attribute: IAttributes, i: number, arr: IAttributes[]) => (
-								<SelectionsItemsContainerCart
+								<ItemsContainerCart
 									selectItem={this.props.selectItem}
 									attributes={arr[i]}
 									product={this.props.product.id}

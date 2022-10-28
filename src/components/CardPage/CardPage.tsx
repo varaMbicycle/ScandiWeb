@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import {
 	CardDescriptionBlock,
-	Description,
 	MainCardBlock, PriceField,
 	ProductContainer,
 	SelectionPanel,
@@ -39,15 +38,18 @@ class CardPage extends Component<any, any> {
 		const productForCart = this.state?.id ? this.state : changeProductForBasket(this.props.data.product)
 		this.props.add(productForCart);
 	}
+	componentDidMount() {
+		if(this.props.data.product){
+			this.setState({...changeProductForBasket(this.props.data.product)})
+		}
+	}
 
 	render() {
 		if (!this.props.data.product) return <div>...Loading</div>
 
-		const product = changeProductForBasket(this.props.data.product);
-		const {gallery, brand, name, description, attributes, prices, inStock} = product;
+		const {gallery, brand, name, description, attributes, prices, inStock} = changeProductForBasket(this.props.data.product);
 		const currentCurrency = localStorage.getItem('currentCurrency');
 		const index = prices?.findIndex((price: IPrice) => price.currency.symbol === currentCurrency) || 0
-
 		return (
 			<ProductContainer>
 				<ImgContainer gallery={gallery} isStock={!inStock}/>
@@ -61,7 +63,7 @@ class CardPage extends Component<any, any> {
 										handleChangeItem={this.handleChangeItem}
 										active={this.state?.id ? this.state.attributes[i].activeItem : 0}
 										selectItem={this.props.selectItem}
-										product={product}
+										product={this.state}
 										item={arr[i].id}
 										attributes={arr[i]}
 										type={arr[i].type}
@@ -70,7 +72,6 @@ class CardPage extends Component<any, any> {
 								)
 							)}
 							</div>}
-
 							<PriceField>
 								<h5>Price:</h5>
 								<div>{prices[index].currency.symbol + prices[index].amount}</div>
@@ -82,7 +83,7 @@ class CardPage extends Component<any, any> {
 							handleClick={this.handleAddToBasket}
 							disabled={!inStock}
 						/>
-						<Description>{ReactHtmlParser(description)}</Description>
+						<>{ReactHtmlParser(description)}</>
 					</CardDescriptionBlock>
 				</MainCardBlock>
 			</ProductContainer>

@@ -92,6 +92,7 @@ export const CardDescriptionBlock = styled.div`
     height: auto;
     font-size: 16px;
     font-weight: 600;
+    margin-bottom: 1.25rem;
   }
 `
 
@@ -100,13 +101,7 @@ export const SelectionPanel = styled.div`
       width: 100%;
 	}
 `
-export const Description = styled.p`
-  margin-top: 40px;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 25.59px;
-  font-family: "Roboto", sans-serif;
-`
+
 export const StyledSelectionsItemsContainer = styled.div`
   display: flex;
   margin-bottom: 24px;
@@ -165,4 +160,43 @@ export const PriceField = styled.div`
 	  font-size: 24px;
 	  font-weight: 700;
 	}
+`
+export const TextItemUnselected = styled.div<{ active: boolean }>`
+  min-width: 45px;
+  min-height: 45px;
+  margin-right: 6px;
+  padding: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid #000000;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 16px;
+  transition: 0.2s;
+  background-color: ${props => props.active ? '#000000': '#ffffff'};
+  color: ${props => props.active ? '#ffffff' : '#000000'};
+  
+  :active{
+    transform: scale(1);
+  }
+`
+export const SwatchItemUnselected = styled.div<{ color: string, active: boolean }>`
+  width: 36px;
+  height: 36px;
+  margin-right: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: ${props => props.active ? '2px solid #5ECE7B': '2px solid rgba(88, 88, 88, 0.15)'};
+  transition:0.2s;
+
+  :active{
+    transform: scale(1);
+  }
+  div{
+    width: 30px;
+    height: 30px;
+    background-color: ${props => props.color};
+  }
 `

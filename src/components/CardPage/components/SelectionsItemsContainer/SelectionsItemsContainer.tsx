@@ -15,9 +15,10 @@ class SelectionsItemsContainer extends Component<any> {
 			const currentItemIndex = this.props.attributes.items.findIndex((product: IProduct) => product.id === event.target.id)
 			attributes.activeItem = currentItemIndex;
 			this.props.handleChangeItem({id: attributes.id, index: currentItemIndex});
-		}else{
-			this.props.selectItem(this.props.product,this.props.item, event.target.id);
 		}
+		// else{
+		// 	this.props.selectItem(this.props.product,this.props.item, event.target.id);
+		// }
 
 	}
 
@@ -53,4 +54,4 @@ class SelectionsItemsContainer extends Component<any> {
 	}
 }
 
-export default memo(SelectionsItemsContainer);
+export default SelectionsItemsContainer;

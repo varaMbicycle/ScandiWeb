@@ -36,7 +36,6 @@ export const getAllCurrenciesWithCategories = graphql(gql`
 export const getProductsOfCategory = () => graphql(gql`
 query getCategory($input: CategoryInput) {
   category(input: $input) {
-    name
     products {
         id
 		name

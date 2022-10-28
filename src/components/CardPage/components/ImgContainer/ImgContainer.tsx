@@ -44,4 +44,4 @@ class ImgContainer extends Component<any, IState > {
 	}
 }
 
-export default memo(ImgContainer);
+export default ImgContainer;

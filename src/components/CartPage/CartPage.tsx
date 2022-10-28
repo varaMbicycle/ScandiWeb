@@ -14,7 +14,6 @@ class CartPage extends Component<any> {
 		const {cart} = this.props;
 		const currentCurrency = localStorage.getItem('currentCurrency');
 		if (!cart.length) return <Message>Cart is empty</Message>
-		console.log(this.props);
 		return (
 			<CartPageContainer>
 				<H3>CART</H3>
@@ -33,7 +32,6 @@ class CartPage extends Component<any> {
 								selectItem={this.props.selectItem}
 							/>
 						</React.Fragment>
-
 					))}
 				</div>
 				<hr/>

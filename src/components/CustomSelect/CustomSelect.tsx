@@ -49,7 +49,6 @@ class CustomSelect extends Component<IProps, IState> {
 	}
 
 	render() {
-		console.log(this.props);
 		const chosen = this.props.children.map((el:any) => el.props.value).findIndex((el:any)=> el ===localStorage.getItem('currentCurrency'));
 		return (
 			<SelectContext.Provider value={this.handleChange}>

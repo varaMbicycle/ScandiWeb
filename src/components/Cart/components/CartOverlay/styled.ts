@@ -190,3 +190,35 @@ export const PriceFieldCart = styled.div`
 	  font-weight: 700;
 	}
 `
+export const TextItemCartNoLive = styled.div<{ active: boolean }>`
+  min-width: 30px;
+  min-height: 25px;
+  margin-right: 4px;
+  padding: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid #000000;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 10px;
+  transition: 0.2s;
+  background-color: ${props => props.active ? '#000000': '#ffffff'};
+  color: ${props => props.active ? '#ffffff' : '#000000'};
+`
+export const SwatchItemCartNoLive = styled.div<{ color: string, active: boolean }>`
+  width: 22px;
+  height: 22px;
+  margin-right: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: ${props => props.active ? '2px solid #5ECE7B': '2px solid rgba(88, 88, 88, 0.15)'};
+  transition:0.2s;
+  
+  div{
+    width: 20px;
+    height: 20px;
+    background-color: ${props => props.color};
+  }
+`

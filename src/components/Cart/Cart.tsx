@@ -11,11 +11,21 @@ interface IState {
 	isOpen: boolean
 }
 
+
+
 class Cart extends Component<any, IState> {
 	constructor(props: any) {
 		super(props);
 		this.state = {
 			isOpen: false
+		}
+	}
+
+	dropDownRef = React.createRef<HTMLDivElement>();
+	clickOutside = (event: MouseEvent) => {
+
+		if (this.state.isOpen && this.dropDownRef.current && !this.dropDownRef.current.contains(event.target as Node)) {
+			this.handleClose()
 		}
 	}
 
@@ -30,7 +40,11 @@ class Cart extends Component<any, IState> {
 		document.body.style.position = 'static';
 	}
 	componentDidMount() {
+		document.addEventListener("mousedown", this.clickOutside)
 		pushToLocalStorage(this.props.cart);
+	}
+	componentWillUnmount() {
+		document.removeEventListener("mousedown", this.clickOutside)
 	}
 	componentDidUpdate() {
 		pushToLocalStorage(this.props.cart);
@@ -41,7 +55,6 @@ class Cart extends Component<any, IState> {
 			count += product.quantity;
 			return count
 		} , 0);
-
 		return (
 			<CartContainer>
 				<CartButton
@@ -60,6 +73,7 @@ class Cart extends Component<any, IState> {
 							onDecrement={this.props.decrementQuantity}
 							onDelete={this.props.del}
 							selectItem={this.props.selectItem}
+							ref={this.dropDownRef}
 						/>
 					</CartBackground>
 				</Modal>
