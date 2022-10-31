@@ -1,4 +1,4 @@
-import React, {Component, memo} from 'react';
+import React, {Component} from 'react';
 import {StyledSelectionsItemsContainer, SwatchItem, TextItem} from "../../styled";
 import {v4 as uuidv4} from "uuid";
 import {IAttribute, IProduct} from "../../../../Interfaces";
@@ -10,38 +10,33 @@ class SelectionsItemsContainer extends Component<any> {
 	}
 
 	handleChangeActiveItem = (event: any) => {
-		if(this.props.handleChangeItem) {
-			const attributes = this.props.attributes;
-			const currentItemIndex = this.props.attributes.items.findIndex((product: IProduct) => product.id === event.target.id)
-			attributes.activeItem = currentItemIndex;
-			this.props.handleChangeItem({id: attributes.id, index: currentItemIndex});
-		}
-		// else{
-		// 	this.props.selectItem(this.props.product,this.props.item, event.target.id);
-		// }
-
+		const currentItemIndex = this.props.attributes.items.findIndex((item: IProduct) => {
+			return item.id === event.target.id
+		})
+		// this.props.attributes.activeItem = currentItemIndex;
+		this.props.handleChangeItem({id: this.props.attributes.id, index: currentItemIndex});
 	}
 
 	render() {
-		const attribute = this.props.attributes;
+		const {attributes} = this.props;
 		return (
 			<>
-				<h5>{attribute.name + ':'}</h5>
+				<h5>{attributes.name + ':'}</h5>
 				<StyledSelectionsItemsContainer>
 					{this.props.type === "text" ?
-						attribute.items.map((item: IAttribute, i: number) => <TextItem
+						attributes.items.map((item: IAttribute, i: number) => <TextItem
 							onClick={this.handleChangeActiveItem}
 							id={item.id}
-							active={this.props.active ? this.props.active === i : i === attribute.activeItem}
+							active={this.props.active ? this.props.active === i : i === attributes.activeItem}
 							key={uuidv4()}
 						>
 							{item.value}
 						</TextItem>) :
-						attribute.items.map((item: IAttribute, i: number) => <SwatchItem
+						attributes.items.map((item: IAttribute, i: number) => <SwatchItem
 							onClick={this.handleChangeActiveItem}
 							color={item.value}
 							id={item.id}
-							active={this.props.active ? this.props.active === i : i === attribute.activeItem}
+							active={this.props.active ? this.props.active === i : i === attributes.activeItem}
 							key={uuidv4()}
 						>
 							<div id={item.id}></div>

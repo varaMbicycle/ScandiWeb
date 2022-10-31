@@ -7,15 +7,17 @@ const initialState: { products: any[] } = {
 export const cartReducer = (state = initialState, action: any): { products: IProduct[] } => {
 	switch (action.type) {
 		case 'ADD_TO_CART':
-			const product = state.products.find(({name}) => {
+			const equalProducts = state.products.filter(({name}) => {
 				return name === action.payload.name
 			})
-			let x;
-			if(product){
-				x = product.attributes.every((el: any, i: number) => el.activeItem === action.payload.attributes[i].activeItem)
+			let targetProduct;
+			if(equalProducts.length){
+				targetProduct = equalProducts.find((product: IProduct) => {
+					return JSON.stringify(product.attributes) === JSON.stringify(action.payload.attributes)
+				})
 			}
-			if (!product || !x) return {products: [...state.products, {...action.payload, quantity: 1}]}
-			product.quantity += 1;
+			if (!targetProduct?.id) return {products: [...state.products, {...action.payload, quantity: 1}]}
+			targetProduct.quantity += 1;
 			return {products: [...state.products]}
 		case 'INCREMENT_QUANTITY':
 			state.products.find(({id}) => id === action.payload).quantity += 1;
