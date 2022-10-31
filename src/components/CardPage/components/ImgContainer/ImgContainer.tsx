@@ -1,4 +1,4 @@
-import React, {Component, memo} from 'react';
+import React, {Component} from 'react';
 import {ImagesBlock, MainImg, StyledImg, StyledImgContainer} from "../../styled";
 import {v4 as uuidv4} from "uuid";
 

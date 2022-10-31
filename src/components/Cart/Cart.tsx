@@ -29,7 +29,8 @@ class Cart extends Component<any, IState> {
 		}
 	}
 
-	handleOpen = () => {
+	handleOpen = (event: any) => {
+		console.log(event);
 		document.body.style.position = 'fixed';
 		document.body.style.right = '8px';
 		!this.state.isOpen && this.setState({isOpen: true})

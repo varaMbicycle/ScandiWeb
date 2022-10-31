@@ -37,6 +37,7 @@ class CardPage extends Component<any, any> {
 	handleAddToBasket = () => {
 		const productForCart = this.state?.id ? this.state : changeProductForBasket(this.props.data.product)
 		this.props.add(productForCart);
+		this.setState({...changeProductForBasket(this.props.data.product)})
 	}
 	componentDidMount() {
 		if(this.props.data.product){
@@ -46,7 +47,7 @@ class CardPage extends Component<any, any> {
 
 	render() {
 		if (!this.props.data.product) return <div>...Loading</div>
-
+		console.log('*** this.props ***', this.props);
 		const {gallery, brand, name, description, attributes, prices, inStock} = changeProductForBasket(this.props.data.product);
 		const currentCurrency = localStorage.getItem('currentCurrency');
 		const index = prices?.findIndex((price: IPrice) => price.currency.symbol === currentCurrency) || 0
@@ -62,8 +63,6 @@ class CardPage extends Component<any, any> {
 									<SelectionsItemsContainer
 										handleChangeItem={this.handleChangeItem}
 										active={this.state?.id ? this.state.attributes[i].activeItem : 0}
-										selectItem={this.props.selectItem}
-										product={this.state}
 										item={arr[i].id}
 										attributes={arr[i]}
 										type={arr[i].type}

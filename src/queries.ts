@@ -100,9 +100,12 @@ query getProduct($id: String!) {
     brand
   }
 }`, {
-	options: (props: any) => ({
-		variables: {
-			id: props.params.id
-		}
-	})
+	options: (props: any) => {
+		const { id } = props.params;
+		return ({
+			variables: {
+				id
+			},
+		})
+	}
 });

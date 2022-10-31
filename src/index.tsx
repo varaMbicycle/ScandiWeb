@@ -11,7 +11,9 @@ import {store} from "./store/store";
 
 const client = new ApolloClient({
 	uri: 'https://server-for-shop-scandiweb.herokuapp.com/graphql',
-	cache: new InMemoryCache(),
+	cache: new InMemoryCache({
+		addTypename: false
+	}),
 })
 
 const root = ReactDOM.createRoot(
