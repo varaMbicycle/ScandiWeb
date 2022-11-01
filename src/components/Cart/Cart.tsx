@@ -1,9 +1,9 @@
-import React, {Component, memo} from 'react';
+import React, {Component} from 'react';
 import {CartButton, CartCounter} from "../Header/components/UserBar/styled";
 import {CartBackground, CartContainer} from "./styled";
 import Modal from "./Modal";
 import CartOverlay from "./components/CartOverlay/CartOverlay";
-import { connect } from "react-redux"
+import {connect} from "react-redux"
 import {mapDispatchToProps, mapStateToProps} from "../../store/maps";
 import {pushToLocalStorage} from "../../utils/utils";
 
@@ -22,14 +22,14 @@ class Cart extends Component<any, IState> {
 	dropDownRef = React.createRef<any>();
 
 	clickOutside = (event: MouseEvent) => {
-		if (this.state.isOpen && this.dropDownRef.current && !this.dropDownRef.current.contains(event.target as Node)) {
+		if (this.state.isOpen && this.dropDownRef.current && !this.dropDownRef.current.contains(event.target as Node) || event.target === this.dropDownRef.current ) {
 			this.handleClose(event)
 		}
 	}
 
 	changeStyles = () => {
-		if(document.body.clientHeight - document.documentElement.clientHeight){
-			if(!this.state.isOpen){
+		if (document.body.clientHeight - document.documentElement.clientHeight) {
+			if (!this.state.isOpen) {
 				document.body.style.position = 'static';
 				document.body.style.overflow = 'auto';
 				document.body.style.paddingRight = '0';
@@ -47,9 +47,8 @@ class Cart extends Component<any, IState> {
 		event.stopPropagation();
 	}
 	handleClose = (event: any) => {
-
-			this.setState({isOpen: false})
-			setTimeout(this.changeStyles, 500);
+		this.setState({isOpen: false})
+		setTimeout(this.changeStyles, 500);
 
 		event.stopPropagation();
 	}
@@ -58,9 +57,11 @@ class Cart extends Component<any, IState> {
 		document.addEventListener("mousedown", this.clickOutside)
 		pushToLocalStorage(this.props.cart);
 	}
+
 	componentWillUnmount() {
 		document.removeEventListener("mousedown", this.clickOutside)
 	}
+
 	componentDidUpdate() {
 		pushToLocalStorage(this.props.cart);
 	}
@@ -69,12 +70,10 @@ class Cart extends Component<any, IState> {
 		const count = this.props.cart.reduce((count: number, product: any) => {
 			count += product.quantity;
 			return count
-		} , 0);
+		}, 0);
 		return (
 			<CartContainer>
-				<CartButton
-					onMouseDown={this.handleOpen}
-				>
+				<CartButton	onMouseDown={this.handleOpen}>
 					<img src={process.env.PUBLIC_URL + "/img/cart.svg"} alt="cart"/>
 					<CartCounter count={this.props.cart.length}>{count}</CartCounter>
 				</CartButton>
