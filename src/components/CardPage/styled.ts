@@ -4,13 +4,16 @@ export const ProductContainer = styled.div`
   display: flex;
   padding: 80px 100px;
 `
+
 export const StyledImgContainer = styled.div`
 	display: flex;
 `
+
 export const ImagesBlock = styled.div`
   max-width: 80px;
   margin-right: 5px;
 `
+
 export const StyledImg = styled.div<{active: boolean}>`
   img {
     display: block;
@@ -35,6 +38,7 @@ export const StyledImg = styled.div<{active: boolean}>`
     }
   }
 `
+
 export const MainCardBlock = styled.div`
   max-width: 100%;
   margin-right: 220px;
@@ -42,6 +46,7 @@ export const MainCardBlock = styled.div`
   display: flex;
   justify-content: space-between;
 `
+
 export const MainImg = styled.div`
   width: 560px;
   position: relative;
@@ -70,6 +75,7 @@ export const MainImg = styled.div`
     object-fit: contain;
   }
 `
+
 export const CardDescriptionBlock = styled.div`
   width: 292px;
   margin-left: 100px;
@@ -106,6 +112,7 @@ export const StyledSelectionsItemsContainer = styled.div`
   display: flex;
   margin-bottom: 24px;
 `
+
 export const TextItem = styled.div<{ active: boolean }>`
   min-width: 45px;
   min-height: 45px;
@@ -130,6 +137,7 @@ export const TextItem = styled.div<{ active: boolean }>`
     transform: scale(1);
   }
 `
+
 export const SwatchItem = styled.div<{ color: string, active: boolean }>`
   width: 36px;
   height: 36px;
@@ -153,6 +161,7 @@ export const SwatchItem = styled.div<{ color: string, active: boolean }>`
     background-color: ${props => props.color};
   }
 `
+
 export const PriceField = styled.div`
   margin-bottom: 20px;
 	div{
@@ -161,6 +170,7 @@ export const PriceField = styled.div`
 	  font-weight: 700;
 	}
 `
+
 export const TextItemUnselected = styled.div<{ active: boolean }>`
   min-width: 45px;
   min-height: 45px;
@@ -181,6 +191,7 @@ export const TextItemUnselected = styled.div<{ active: boolean }>`
     transform: scale(1);
   }
 `
+
 export const SwatchItemUnselected = styled.div<{ color: string, active: boolean }>`
   width: 36px;
   height: 36px;

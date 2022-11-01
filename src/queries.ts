@@ -1,23 +1,6 @@
 import {graphql} from "@apollo/client/react/hoc";
 import {gql} from "@apollo/client";
 
-export const getAllCategories = graphql(gql`
-query {
-		categories {
-            name
-        }
-	}
-`)
-
-export const getAllCurrencies = graphql(gql`
-query {
-		currencies{
-			label
-            symbol
-		}
-	}
-`)
-
 export const getAllCurrenciesWithCategories = graphql(gql`
 		query {
 			categories {

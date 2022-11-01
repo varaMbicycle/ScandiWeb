@@ -10,13 +10,13 @@ interface IProps {
 
 class CartOverlayCounter extends Component<IProps> {
 
-
 	render() {
+		const {id, value, onIncrement, onDecrement} = this.props;
 		return (
 			<CartOverlayCounterBlock>
-				<button id={this.props.id} onClick={() => this.props.onIncrement(this.props.id)}>+</button>
-				<div>{this.props.value}</div>
-				<button id={this.props.id} onClick={() => this.props.onDecrement(this.props.id)}>-</button>
+				<button id={id} onClick={() => onIncrement(id)}>+</button>
+				<div>{value}</div>
+				<button id={id} onClick={() => onDecrement(id)}>-</button>
 			</CartOverlayCounterBlock>
 		);
 	}

@@ -130,9 +130,7 @@ export const SmallCardCost = styled.p`
   font-weight: 600;
   font-size: 16px;
 `
-export const SizeBlockStyled = styled.div`
 
-`
 export const StyledSelectionsItemsContainerCart = styled.div`
   display: flex;
   margin-bottom: 10px;

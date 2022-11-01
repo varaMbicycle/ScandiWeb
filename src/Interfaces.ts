@@ -43,6 +43,7 @@ export interface ICurrency {
 	label: string
 	symbol: string
 }
+
 export interface IPrice {
 	amount: number
 	currency: ICurrency

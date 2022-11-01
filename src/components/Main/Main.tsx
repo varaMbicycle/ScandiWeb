@@ -22,11 +22,12 @@ class Main extends Component<any> {
 	}
 
 	render() {
+		const {category} = this.props.data;
 		return (
 			<MainStyled>
 				<H2>{this.props.name.toUpperCase()}</H2>
 				<SectionStyled>
-					{this.props.data.category && this.props.data.category.products.map((item: IProduct) => (
+					{category && category.products.map((item: IProduct) => (
 						<Card card={item}
 						      key={uuidv4()}
 						/>

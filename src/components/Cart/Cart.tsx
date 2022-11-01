@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {CartButton, CartCounter} from "../Header/components/UserBar/styled";
-import {CartBackground, CartContainer} from "./styled";
+import {CartBackground} from "./styled";
 import Modal from "./Modal";
 import CartOverlay from "./components/CartOverlay/CartOverlay";
 import {connect} from "react-redux"
@@ -67,31 +67,32 @@ class Cart extends Component<any, IState> {
 	}
 
 	render() {
-		const count = this.props.cart.reduce((count: number, product: any) => {
+		const {cart, value, incrementQuantity, decrementQuantity, del, selectItem} = this.props;
+		const count = cart.reduce((count: number, product: any) => {
 			count += product.quantity;
 			return count
 		}, 0);
 		return (
-			<CartContainer>
+			<div>
 				<CartButton	onMouseDown={this.handleOpen}>
 					<img src={process.env.PUBLIC_URL + "/img/cart.svg"} alt="cart"/>
-					<CartCounter count={this.props.cart.length}>{count}</CartCounter>
+					<CartCounter count={cart.length}>{count}</CartCounter>
 				</CartButton>
 				<Modal>
 					<CartBackground isOpen={this.state.isOpen} ref={this.dropDownRef}>
 						<CartOverlay
-							products={this.props.cart}
-							currentCurrency={this.props.value}
+							products={cart}
+							currentCurrency={value}
+							onIncrement={incrementQuantity}
+							onDecrement={decrementQuantity}
+							onDelete={del}
+							selectItem={selectItem}
 							handleClose={this.handleClose}
-							onIncrement={this.props.incrementQuantity}
-							onDecrement={this.props.decrementQuantity}
-							onDelete={this.props.del}
-							selectItem={this.props.selectItem}
 							clickOutside={this.clickOutside}
 						/>
 					</CartBackground>
 				</Modal>
-			</CartContainer>
+			</div>
 		);
 	}
 }

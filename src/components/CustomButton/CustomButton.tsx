@@ -11,10 +11,16 @@ class CustomButton extends Component<ICustomButton> {
 	constructor(props:ICustomButton) {
 		super(props);
 	}
+
 	render() {
+		const {color, handleClick, disabled, text} = this.props;
 		return (
-			<StyledCustomButton color={this.props.color} onClick={this.props.handleClick} disabled={this.props.disabled || false}>
-				{this.props.text}
+			<StyledCustomButton
+				color={color}
+				onClick={handleClick}
+				disabled={disabled || false}
+			>
+				{text}
 			</StyledCustomButton>
 		);
 	}

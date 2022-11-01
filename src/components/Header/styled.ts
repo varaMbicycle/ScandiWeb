@@ -6,6 +6,7 @@ export const AppBar = styled.header`
   justify-content: space-between;
   padding: 0 101px;
 `
+
 export const StyledNavigation = styled.nav`
   display: flex;
   width: 33%;

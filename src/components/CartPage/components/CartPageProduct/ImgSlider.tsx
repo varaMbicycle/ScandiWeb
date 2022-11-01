@@ -2,8 +2,13 @@ import React, {Component} from 'react';
 import {ImgContainer, ImgSliderContainer} from "./styled";
 
 const IMG_WIDTH = 190;
+
+interface IImgSlider {
+	posX: number
+}
+
 const ref = React.createRef<any>();
-class ImgSlider extends Component<any, any> {
+class ImgSlider extends Component<any, IImgSlider> {
 	constructor(props: any) {
 		super(props);
 		this.state = {
@@ -17,15 +22,15 @@ class ImgSlider extends Component<any, any> {
 
 	handleSlideRight = (event: any) => {
 		if(this.state.posX > (this.props.gallery.length * IMG_WIDTH * -1 + IMG_WIDTH)){
-			this.setState((prev: any)=> (
+			this.setState((prev: IImgSlider)=> (
 				{...prev, posX: prev.posX -= IMG_WIDTH}
 			))
 			setTimeout(()=> this.props.moveRight(event.target.id), 350)
 		}
 	}
+
 	handleSlideLeft = (event: any) => {
 		if(this.state.posX){
-
 			this.setState((prev: any)=> (
 				{...prev, posX: prev.posX += IMG_WIDTH}
 			))
@@ -34,18 +39,18 @@ class ImgSlider extends Component<any, any> {
 	}
 
 	render() {
-		const images = this.props.gallery
+		const {gallery, name} = this.props
 		return (
 			<ImgSliderContainer>
 				<ImgContainer ref={ref} style={{
 					transform: `translateX(${this.state.posX}px)`
 				}}>
-					{images.map((img: string) => <img src={img} key={img} alt={img}/>)}
+					{gallery.map((img: string) => <img src={img} key={img} alt={img}/>)}
 				</ImgContainer>
 
-				{(this.props.gallery.length !== 1) && <div>
-					<button onClick={this.handleSlideLeft} id={this.props.name}>{'<'}</button>
-					<button onClick={this.handleSlideRight} id={this.props.name}>{'>'}</button>
+				{(gallery.length !== 1) && <div>
+					<button onClick={this.handleSlideLeft} id={name}>{'<'}</button>
+					<button onClick={this.handleSlideRight} id={name}>{'>'}</button>
 				</div>}
 			</ImgSliderContainer>
 		);

@@ -7,6 +7,7 @@ export const Message = styled.h2`
   margin: 3rem;
 
 `
+
 export const CartPageContainer = styled.div`
   padding: 80px 100px;
 
@@ -20,6 +21,7 @@ export const CartPageContainer = styled.div`
     opacity: 0.3;
   }
 `
+
 export const CartPageResultBlock = styled.div`
   width: 280px;
   margin-top: 32px;

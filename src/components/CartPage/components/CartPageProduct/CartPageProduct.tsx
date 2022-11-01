@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {CartProductContainer, CartProductDescription, CounterImgContainer} from "./styled";
-import SelectionsItemsContainer from "../../../CardPage/components/SelectionsItemsContainer/SelectionsItemsContainer";
 import {v4 as uuidv4} from "uuid";
 import {SelectionPanel} from "../../../CardPage/styled";
 import CartOverlayCounter from "../../../Cart/components/CartOverlay/CartOverlayCounter";
@@ -12,7 +11,7 @@ class CartPageProduct extends Component<any> {
 
 	render() {
 		const {prices, attributes, brand, name, gallery, id, activeImg, quantity} = this.props.product;
-		const {currentCurrency} = this.props;
+		const {currentCurrency, selectItem} = this.props;
 		const currency = prices.find((price: IPrice) => price.currency.symbol === currentCurrency).amount;
 		return (
 			<CartProductContainer>
@@ -26,7 +25,7 @@ class CartPageProduct extends Component<any> {
 									attributes={arr[i]}
 									type={arr[i].type}
 									key={uuidv4()}
-									selectItem={this.props.selectItem}
+									selectItem={selectItem}
 									product={id}
 									item={arr[i].id}
 								/>

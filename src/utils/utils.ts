@@ -14,6 +14,7 @@ export const changeProductForBasket = (product: IProduct) => (
 	}
 )
 
-export const pushToLocalStorage = (cart : IProduct) =>{
+export const pushToLocalStorage = (cart : IProduct) => {
 	localStorage.setItem('cart', JSON.stringify(cart));
 }
+

@@ -1,8 +1,5 @@
 import styled from "styled-components";
 
-export const CartContainer = styled.div`
-
-`
 export const CartBackground = styled.div<{ isOpen: boolean }>`
   position: absolute;
   left: 0;

@@ -38,6 +38,7 @@ export const StyledCustomButton = styled.button<{ color: string, disabled: boole
     border: ${props => props.color === 'primary' ? '1px solid rgb(167, 167, 167)' : '1px solid #5ECE7B'};
   }
 `
+
 export const StyledTotalCostDescription = styled.div`
   display: flex;
   justify-content: space-between;

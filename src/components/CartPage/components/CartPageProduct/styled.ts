@@ -30,6 +30,7 @@ export const CartProductContainer = styled.section`
       background-color: #e7e7e7;
     }
 `
+
 export const CartProductDescription = styled.section`
   margin: 24px 0;
 	
@@ -61,6 +62,7 @@ export const CounterImgContainer = styled.div`
   display: flex;
   margin: 24px 0;
 `
+
 export const ImgSliderContainer = styled.div`
   height: 290px;
   width: 190px;
@@ -98,6 +100,7 @@ export const ImgSliderContainer = styled.div`
     object-fit: contain;
   }
 `
+
 export const ImgContainer = styled.div`
   height: 290px;
   width: 190px;

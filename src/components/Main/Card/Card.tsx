@@ -15,11 +15,11 @@ class Card extends Component<any> {
 	}
 
 	render() {
+		const {inStock,id, name, gallery, brand, prices } = this.props.card;
 		const currentCurrency = localStorage.getItem('currentCurrency');
-		const prices = this.props.card.prices;
 		const price = prices.find((el: IPrice) => el.currency.symbol === currentCurrency)
-		const {inStock,id, name, gallery, brand } = this.props.card;
-		if(!this.props.card.prices) return <div>Loading...</div>
+
+		if(!prices) return <div>Loading...</div>
 		return (
 			<CardStyled inStock={inStock}>
 				<NavLink to={id}>

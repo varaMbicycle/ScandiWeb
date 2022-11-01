@@ -34,6 +34,7 @@ class App extends Component<any> {
 	render() {
 		const {categories, currencies} = this.props.data;
 		const currenCurrency = localStorage.getItem('currentCurrency');
+
 		return (
 			<div className="App">
 				<BrowserRouter>
@@ -45,14 +46,14 @@ class App extends Component<any> {
 					<Routes>
 						{categories && categories.map(
 							({name}: ICategory) => (
-									<Route
-										key={uuidv4()}
-										path={name}
-										element={<Main name={name}/>}
-									/>
+								<Route
+									key={uuidv4()}
+									path={name}
+									element={<Main name={name}/>}
+								/>
 							)
 						)}
-						<Route path="/" element={<Navigate replace to="/all" />} />
+						<Route path="/" element={<Navigate replace to="/all"/>}/>
 						<Route
 							key={uuidv4()}
 							path={'cart'}

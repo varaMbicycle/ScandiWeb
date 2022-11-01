@@ -7,19 +7,20 @@ interface IState {
 	isStock?: boolean;
 }
 
-class ImgContainer extends Component<any, IState > {
-	constructor(props:any) {
+class ImgContainer extends Component<any, IState> {
+	constructor(props: any) {
 		super(props);
 		this.state = {
 			currentImg: this.props.gallery[0] || ''
 		}
 	}
+
 	handleChangeImg = (event: any) => {
 		this.setState({...this.state, currentImg: event?.target?.id})
 	}
 
 	render() {
-		const {gallery} = this.props;
+		const {gallery, isStock} = this.props;
 		return (
 			<StyledImgContainer>
 				<ImagesBlock>
@@ -36,7 +37,7 @@ class ImgContainer extends Component<any, IState > {
 					))}
 				</ImagesBlock>
 				<MainImg>
-					{this.props.isStock && <div>OUT OF STOCK</div>}
+					{isStock && <div>OUT OF STOCK</div>}
 					<img src={this.state.currentImg || gallery[0]} alt={gallery[0]}/>
 				</MainImg>
 			</StyledImgContainer>

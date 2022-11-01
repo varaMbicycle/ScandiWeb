@@ -12,6 +12,7 @@ export const CartButton = styled.button`
   margin-right: 20px;
   cursor: pointer;
 `
+
 export const CartCounter = styled.div<{ count: number }>`
   font-family: 'Roboto', sans-serif;
   font-size: 0.7rem;
@@ -30,6 +31,7 @@ export const CartCounter = styled.div<{ count: number }>`
   aspect-ratio: 1/1;
   content: ${props => props.count};
 `
+
 export const FlexContainer = styled.div`
   display: flex;
   align-items: center;
@@ -37,9 +39,11 @@ export const FlexContainer = styled.div`
   width: 33%;
   position: relative;
 `
+
 export const SelectMoneyContainer = styled.div`
   position: relative;
 `
+
 export const ToggleSelectMoney = styled.button<{ isOpen: boolean }>`
   position: relative;
   display: flex;
@@ -66,6 +70,7 @@ export const ToggleSelectMoney = styled.button<{ isOpen: boolean }>`
     align-items: end;
   }
 `
+
 export const DropDownSelectMoney = styled.div<{ isOpen: boolean }>`
   position: absolute;
   z-index: 4;
@@ -80,6 +85,7 @@ export const DropDownSelectMoney = styled.div<{ isOpen: boolean }>`
   box-shadow: -2px -7px 41px 16px rgba(34, 60, 80, 0.07);
   border-radius: 0.3125rem;
 `
+
 export const SelectOptions = styled.ul<{ choose: number }>`
   margin: 0;
   padding: 0;
@@ -89,6 +95,7 @@ export const SelectOptions = styled.ul<{ choose: number }>`
     background-color: rgba(183, 183, 183, 0.51);
   }
 `
+
 export const OptionStyled = styled.li`
   padding: 0.75rem 0.25rem 0.75rem 1.25rem;
   display: flex;

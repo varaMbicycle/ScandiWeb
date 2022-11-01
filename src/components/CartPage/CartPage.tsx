@@ -11,8 +11,9 @@ import {IProduct} from "../../Interfaces";
 class CartPage extends Component<any> {
 
 	render() {
-		const {cart} = this.props;
+		const {cart, incrementQuantity, decrementQuantity, moveLeft, moveRight} = this.props;
 		const currentCurrency = localStorage.getItem('currentCurrency');
+
 		if (!cart.length) return <Message>Cart is empty</Message>
 		return (
 			<CartPageContainer>
@@ -24,12 +25,10 @@ class CartPage extends Component<any> {
 							<CartPageProduct
 								currentCurrency={localStorage.getItem('currentCurrency')}
 								product={product}
-								onIncrement={this.props.incrementQuantity}
-								onDecrement={this.props.decrementQuantity}
-								onDelete={this.props.del}
-								moveLeft={this.props.moveLeft}
-								moveRight={this.props.moveRight}
-								selectItem={this.props.selectItem}
+								onIncrement={incrementQuantity}
+								onDecrement={decrementQuantity}
+								moveLeft={moveLeft}
+								moveRight={moveRight}
 							/>
 						</React.Fragment>
 					))}

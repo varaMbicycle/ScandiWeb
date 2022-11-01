@@ -5,9 +5,9 @@ import {CartPageResultBlock} from "../../styled";
 import {IPrice} from "../../../../Interfaces";
 
 class ResultBlock extends Component<any> {
+
 	render() {
-		const {currentCurrency} = this.props;
-		const {cart} = this.props;
+		const {currentCurrency, cart} = this.props;
 		const total = cart.reduce((quantity: number, product: any) => {
 			const amount = product.prices.find((price: IPrice) => price.currency.symbol === currentCurrency).amount;
 			const sum = amount * product.quantity;
@@ -17,13 +17,12 @@ class ResultBlock extends Component<any> {
 		const quantity = cart.reduce((quantity: number, product: any) => (
 			quantity += product.quantity
 		), 0)
+
 		return (
 			<CartPageResultBlock>
 				<H5>Tax 21%: <span>{currentCurrency}{tax.toFixed(2)}</span></H5>
 				<H5>Quantity:
-					<span>
-							{quantity}
-						</span>
+					<span>{quantity}</span>
 				</H5>
 				<H5>Total: <span>{currentCurrency}{total.toFixed(2)}</span></H5>
 				<CustomButton color='secondary' text='ORDER' handleClick={() => console.log('order')}/>

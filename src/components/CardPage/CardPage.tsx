@@ -34,11 +34,13 @@ class CardPage extends Component<any, any> {
 		})
 		this.setState({...p, attributes: [...attr]})
 	}
+
 	handleAddToBasket = () => {
 		const productForCart = this.state?.id ? this.state : changeProductForBasket(this.props.data.product)
 		this.props.add(productForCart);
 		this.setState({...changeProductForBasket(this.props.data.product)})
 	}
+
 	componentDidMount() {
 		if(this.props.data.product){
 			this.setState({...changeProductForBasket(this.props.data.product)})
@@ -47,7 +49,15 @@ class CardPage extends Component<any, any> {
 
 	render() {
 		if (!this.props.data.product) return <div>...Loading</div>
-		const {gallery, brand, name, description, attributes, prices, inStock} = changeProductForBasket(this.props.data.product);
+		const {
+			gallery,
+			brand,
+			name,
+			description,
+			attributes,
+			prices,
+			inStock
+		} = changeProductForBasket(this.props.data.product);
 		const currentCurrency = localStorage.getItem('currentCurrency');
 		const index = prices?.findIndex((price: IPrice) => price.currency.symbol === currentCurrency) || 0
 		return (
