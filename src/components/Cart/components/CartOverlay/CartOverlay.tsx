@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, memo} from 'react';
 import {CartOverlayButtonsBlock, CartOverlayProductsContainer, StyledCartOverlay} from "./styled";
 import CustomButton from "../../../CustomButton/CustomButton";
 import CartOverlayCard from "./CartOverlayCard";
@@ -19,7 +19,6 @@ interface ICartOverlay {
 	onDelete: (id: string) => void;
 }
 
-const CartOverlay = React.forwardRef((props: ICartOverlay, ref: any) => {
 	class CartOverlay extends Component<ICartOverlay> {
 		constructor(props: ICartOverlay) {
 			super(props);
@@ -33,7 +32,7 @@ const CartOverlay = React.forwardRef((props: ICartOverlay, ref: any) => {
 			}, 0)
 			const quantity = this.props.products.length;
 			return (
-				<StyledCartOverlay ref={ref}>
+				<StyledCartOverlay>
 					{quantity ? <H6>My Bag, {quantity} {quantity !== 1 ? 'items' : 'item'}</H6> : <H6>My Bag is empty</H6>}
 					<CartOverlayProductsContainer>
 						{this.props.products.map((product: IProduct) => (
@@ -59,15 +58,7 @@ const CartOverlay = React.forwardRef((props: ICartOverlay, ref: any) => {
 			);
 		}
 	}
-	return <CartOverlay
-		currentCurrency={props.currentCurrency}
-		handleClose={props.handleClose}
-	    onDecrement={props.onDecrement}
-		onDelete={props.onDelete}
-		onIncrement={props.onIncrement}
-		products={props.products}
-		selectItem={props.selectItem}/>
-})
 
 
-export default CartOverlay;
+
+export default memo(CartOverlay);
