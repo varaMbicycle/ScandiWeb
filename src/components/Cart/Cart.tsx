@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, memo} from 'react';
 import {CartButton, CartCounter} from "../Header/components/UserBar/styled";
 import {CartBackground, CartContainer} from "./styled";
 import Modal from "./Modal";
@@ -11,8 +11,6 @@ interface IState {
 	isOpen: boolean
 }
 
-
-
 class Cart extends Component<any, IState> {
 	constructor(props: any) {
 		super(props);
@@ -21,25 +19,38 @@ class Cart extends Component<any, IState> {
 		}
 	}
 
-	dropDownRef = React.createRef<HTMLDivElement>();
-	clickOutside = (event: MouseEvent) => {
+	dropDownRef = React.createRef<any>();
 
+	clickOutside = (event: MouseEvent) => {
 		if (this.state.isOpen && this.dropDownRef.current && !this.dropDownRef.current.contains(event.target as Node)) {
 			this.handleClose()
 		}
 	}
 
+	changeStyles = () => {
+		if(document.body.clientHeight - document.documentElement.clientHeight){
+			if(!this.state.isOpen){
+				document.body.style.position = 'static';
+				document.body.style.overflow = 'auto';
+				document.body.style.paddingRight = '0';
+			} else {
+				document.body.style.overflow = 'hidden';
+				document.body.style.position = 'fixed';
+				document.body.style.paddingRight = '17px';
+			}
+		}
+	}
+
 	handleOpen = (event: any) => {
-		console.log(event);
-		document.body.style.position = 'fixed';
-		document.body.style.right = '8px';
 		!this.state.isOpen && this.setState({isOpen: true})
+		setTimeout(this.changeStyles, 0);
+		event.stopPropagation();
 	}
 	handleClose = () => {
-
 		this.setState({isOpen: false})
-		document.body.style.position = 'static';
+		setTimeout(this.changeStyles, 500);
 	}
+
 	componentDidMount() {
 		document.addEventListener("mousedown", this.clickOutside)
 		pushToLocalStorage(this.props.cart);
@@ -59,13 +70,14 @@ class Cart extends Component<any, IState> {
 		return (
 			<CartContainer>
 				<CartButton
-					onClick={this.handleOpen}
+					onMouseDown={this.handleOpen}
+
 				>
 					<img src={process.env.PUBLIC_URL + "/img/cart.svg"} alt="cart"/>
 					<CartCounter count={this.props.cart.length}>{count}</CartCounter>
 				</CartButton>
 				<Modal>
-					<CartBackground isOpen={this.state.isOpen}>
+					<CartBackground isOpen={this.state.isOpen} ref={this.dropDownRef}>
 						<CartOverlay
 							products={this.props.cart}
 							currentCurrency={this.props.value}
@@ -74,7 +86,6 @@ class Cart extends Component<any, IState> {
 							onDecrement={this.props.decrementQuantity}
 							onDelete={this.props.del}
 							selectItem={this.props.selectItem}
-							ref={this.dropDownRef}
 						/>
 					</CartBackground>
 				</Modal>

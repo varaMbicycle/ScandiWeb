@@ -47,7 +47,6 @@ class CardPage extends Component<any, any> {
 
 	render() {
 		if (!this.props.data.product) return <div>...Loading</div>
-		console.log('*** this.props ***', this.props);
 		const {gallery, brand, name, description, attributes, prices, inStock} = changeProductForBasket(this.props.data.product);
 		const currentCurrency = localStorage.getItem('currentCurrency');
 		const index = prices?.findIndex((price: IPrice) => price.currency.symbol === currentCurrency) || 0

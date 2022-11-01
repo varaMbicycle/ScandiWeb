@@ -13,7 +13,6 @@ class SelectionsItemsContainer extends Component<any> {
 		const currentItemIndex = this.props.attributes.items.findIndex((item: IProduct) => {
 			return item.id === event.target.id
 		})
-		// this.props.attributes.activeItem = currentItemIndex;
 		this.props.handleChangeItem({id: this.props.attributes.id, index: currentItemIndex});
 	}
 
