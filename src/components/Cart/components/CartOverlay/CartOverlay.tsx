@@ -10,13 +10,14 @@ import { IPrice, IProduct } from "../../../../Interfaces";
 
 
 interface ICartOverlay {
-	handleClose: () => void;
+	handleClose: (event: any) => void;
 	onIncrement: (event: any) => void;
 	onDecrement: (event: any) => void;
 	selectItem: ()=>void;
 	products: any;
 	currentCurrency: string;
 	onDelete: (id: string) => void;
+	clickOutside: (event: any) => void;
 }
 
 	class CartOverlay extends Component<ICartOverlay> {

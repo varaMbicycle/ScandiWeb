@@ -23,7 +23,7 @@ class Cart extends Component<any, IState> {
 
 	clickOutside = (event: MouseEvent) => {
 		if (this.state.isOpen && this.dropDownRef.current && !this.dropDownRef.current.contains(event.target as Node)) {
-			this.handleClose()
+			this.handleClose(event)
 		}
 	}
 
@@ -46,9 +46,12 @@ class Cart extends Component<any, IState> {
 		setTimeout(this.changeStyles, 0);
 		event.stopPropagation();
 	}
-	handleClose = () => {
-		this.setState({isOpen: false})
-		setTimeout(this.changeStyles, 500);
+	handleClose = (event: any) => {
+
+			this.setState({isOpen: false})
+			setTimeout(this.changeStyles, 500);
+
+		event.stopPropagation();
 	}
 
 	componentDidMount() {
@@ -71,7 +74,6 @@ class Cart extends Component<any, IState> {
 			<CartContainer>
 				<CartButton
 					onMouseDown={this.handleOpen}
-
 				>
 					<img src={process.env.PUBLIC_URL + "/img/cart.svg"} alt="cart"/>
 					<CartCounter count={this.props.cart.length}>{count}</CartCounter>
@@ -86,6 +88,7 @@ class Cart extends Component<any, IState> {
 							onDecrement={this.props.decrementQuantity}
 							onDelete={this.props.del}
 							selectItem={this.props.selectItem}
+							clickOutside={this.clickOutside}
 						/>
 					</CartBackground>
 				</Modal>
