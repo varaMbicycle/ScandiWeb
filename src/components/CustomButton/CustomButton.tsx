@@ -4,7 +4,7 @@ import {StyledCustomButton} from "./styled";
 interface ICustomButton {
 	color: string
 	text: string
-	handleClick: ()=> void
+	handleClick: (event: any)=> void
 	disabled?: boolean
 }
 class CustomButton extends Component<ICustomButton> {
