@@ -5,6 +5,7 @@ import CustomOption from "../../../CustomSelect/CustomOption";
 import Cart from "../../../Cart/Cart";
 import {v4 as uuidv4} from "uuid";
 import {ICurrency} from "../../../../Interfaces";
+import {getCurrencies} from "../../../../queries";
 
 interface IState {
 	currentCurrency: string
@@ -20,15 +21,18 @@ class UserBar extends Component<any, IState> {
 
 	handleChangeCurrency = (currentCurrency: string) => {
 		localStorage.setItem('currentCurrency', currentCurrency);
-		this.setState({currentCurrency})
-		this.props.handleChangeCurrency(currentCurrency);
+		this.setState({...this.state, currentCurrency})
 	}
 
 	render() {
-		const currencies = this.props.currencies || [];
+		const {currencies} = this.props.data;
+		if(!currencies) return <div>Loading...</div>
 		return (
 			<FlexContainer>
-				<CustomSelect value={this.state.currentCurrency} onChange={this.handleChangeCurrency}>
+				<CustomSelect
+					value={this.state.currentCurrency}
+					onChange={this.handleChangeCurrency}
+				>
 					{currencies.map((currency: ICurrency) => (
 						<CustomOption value={currency.symbol} key={uuidv4()}>
 							{currency.symbol + ' ' + currency.label}
@@ -41,4 +45,4 @@ class UserBar extends Component<any, IState> {
 	}
 }
 
-export default UserBar;
+export default getCurrencies(UserBar);

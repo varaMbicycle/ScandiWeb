@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {SelectOptions} from "../Header/components/UserBar/styled";
 import {DropDownSelectMoney, SelectMoneyContainer, ToggleSelectMoney} from "../Header/components/UserBar/styled";
+import {getCurrencies} from "../../queries";
 
 interface IProps {
 	value: string;
@@ -15,7 +16,7 @@ interface IState {
 export const SelectContext = React.createContext((value: string) => {
 });
 
-class CustomSelect extends Component<IProps, IState> {
+class CustomSelect extends Component<any, IState> {
 	state: IState = {
 		isOpen: false,
 	}
