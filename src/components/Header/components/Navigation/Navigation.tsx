@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import {NavLink} from "react-router-dom";
-import {ListNavigation, StyledLI} from '../styled';
+import {ListNavigation} from '../styled';
 import {v4 as uuidv4} from 'uuid';
-import {graphql} from '@apollo/client/react/hoc';
-import {gql} from "@apollo/client";
+import {getCategories} from "../../../../queries";
 
 interface IState {
 	path: string;
@@ -41,10 +40,4 @@ class Navigation extends Component<any, IState> {
 	}
 }
 
-export default graphql(gql`
-query {
-		categories {
-            name
-        }
-	}
-`)(Navigation);
+export default getCategories(Navigation);
