@@ -17,6 +17,7 @@ import {connect} from 'react-redux';
 import {mapDispatchToProps, mapStateToProps} from "../../store/maps";
 import {changeProductForBasket} from "../../utils/utils";
 import { IAttributes, IPrice } from "../../Interfaces";
+import Loader from "../Loader/Loader";
 
 class CardPage extends Component<any, any> {
 	constructor(props: any) {
@@ -48,7 +49,7 @@ class CardPage extends Component<any, any> {
 	}
 
 	render() {
-		if (!this.props.data.product) return <div>...Loading</div>
+		if (!this.props.data.product) return <Loader />
 		const {
 			gallery,
 			brand,

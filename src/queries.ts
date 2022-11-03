@@ -11,11 +11,11 @@ export const getAllCurrenciesWithCategories = graphql(gql`
             }
 			
 			currencies{
-			label
-            symbol
+				label
+	            symbol
+			}
 		}
-		}
-		`)
+	`)
 export const getProductsOfCategory = () => graphql(gql`
 query getCategory($input: CategoryInput) {
   category(input: $input) {

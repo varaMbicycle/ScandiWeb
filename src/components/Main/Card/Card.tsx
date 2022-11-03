@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import {mapDispatchToProps, mapStateToProps} from "../../../store/maps";
 import {changeProductForBasket} from "../../../utils/utils";
 import {IPrice} from "../../../Interfaces";
+import Loader from "../../Loader/Loader";
 
 class Card extends Component<any> {
 
@@ -19,7 +20,7 @@ class Card extends Component<any> {
 		const currentCurrency = localStorage.getItem('currentCurrency');
 		const price = prices.find((el: IPrice) => el.currency.symbol === currentCurrency)
 
-		if(!prices) return <div>Loading...</div>
+		if(!prices) return <Loader />
 		return (
 			<CardStyled inStock={inStock}>
 				<NavLink to={id}>

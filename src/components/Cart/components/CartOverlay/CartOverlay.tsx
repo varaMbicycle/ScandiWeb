@@ -7,6 +7,7 @@ import {H6} from '../../../../styled';
 import {StyledTotalCostDescription} from '../../../CustomButton/styled';
 import {NavLink} from 'react-router-dom';
 import {IPrice, IProduct} from "../../../../Interfaces";
+import Loader from "../../../Loader/Loader";
 
 interface ICartOverlay {
 	handleClose: (event: any) => void;
@@ -33,7 +34,7 @@ class CartOverlay extends Component<ICartOverlay> {
 		}, 0)
 		const quantity = products.length;
 
-		if(!products) return <div>Loading...</div>
+		if(!products) return <Loader />
 		return (
 			<StyledCartOverlay>
 				{quantity ? <H6>My Bag, {quantity} {quantity !== 1 ? 'items' : 'item'}</H6> : <H6>My Bag is empty</H6>}

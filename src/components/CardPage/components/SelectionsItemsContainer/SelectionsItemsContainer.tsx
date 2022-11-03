@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {StyledSelectionsItemsContainer, SwatchItem, TextItem} from "../../styled";
 import {v4 as uuidv4} from "uuid";
 import {IAttribute, IProduct} from "../../../../Interfaces";
+import Loader from "../../../Loader/Loader";
 
 class SelectionsItemsContainer extends Component<any> {
 	constructor(props: any) {
@@ -18,7 +19,7 @@ class SelectionsItemsContainer extends Component<any> {
 	render() {
 		const {attributes, type, active} = this.props;
 
-		if (!attributes) return <div>Loading...</div>
+		if (!attributes) return <Loader />
 		return (
 			<>
 				<h5>{attributes.name + ':'}</h5>

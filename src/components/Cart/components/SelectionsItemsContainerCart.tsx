@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {v4 as uuidv4} from "uuid";
 import {StyledSelectionsItemsContainerCart, SwatchItemCart, TextItemCart} from "./CartOverlay/styled";
 import {IAttributes} from "../../../Interfaces";
+import Loader from "../../Loader/Loader";
 
 class SelectionsItemsContainerCart extends Component<any> {
 
@@ -12,7 +13,7 @@ class SelectionsItemsContainerCart extends Component<any> {
 	render() {
 		const {attributes, type} = this.props;
 
-		if(!attributes) return <div>Loading...</div>
+		if(!attributes) return <Loader />
 		return (
 			<>
 				<h5>{attributes.name + ':'}</h5>

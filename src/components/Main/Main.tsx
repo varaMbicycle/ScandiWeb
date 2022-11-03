@@ -5,6 +5,7 @@ import Card from "./Card/Card";
 import {getProductsOfCategory} from "../../queries";
 import {v4 as uuidv4} from "uuid";
 import {IProduct} from "../../Interfaces";
+import Loader from "../Loader/Loader";
 
 class Main extends Component<any> {
 	constructor(props: any) {
@@ -23,6 +24,8 @@ class Main extends Component<any> {
 
 	render() {
 		const {category} = this.props.data;
+		if(!category) return <Loader />
+
 		return (
 			<MainStyled>
 				<H2>{this.props.name.toUpperCase()}</H2>

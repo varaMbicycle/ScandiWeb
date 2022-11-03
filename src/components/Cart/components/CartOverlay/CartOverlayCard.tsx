@@ -10,6 +10,7 @@ import CartOverlayCounter from "./CartOverlayCounter";
 import {v4 as uuidv4} from "uuid";
 import {IAttributes, IPrice} from "../../../../Interfaces";
 import ItemsContainerCart from "../ItemsContainerCart";
+import Loader from "../../../Loader/Loader";
 
 class CartOverlayCard extends Component<any> {
 
@@ -19,7 +20,7 @@ class CartOverlayCard extends Component<any> {
 		const price = this.props.product.prices.find((price: IPrice) => price.currency.symbol === currentCurrency).amount;
 		const {selectItem, onIncrement, onDecrement} = this.props;
 
-		if (!attributes) return <div>Loading...</div>
+		if (!attributes) return <Loader />
 		return (
 			<StyledCartOverlayCard>
 				<CartOverlayProductDescription>

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {v4 as uuidv4} from "uuid";
 import {IAttribute} from "../../../../Interfaces";
 import { StyledSelectionsItemsContainer, SwatchItemUnselected, TextItemUnselected } from '../../../CardPage/styled';
+import Loader from "../../../Loader/Loader";
 
 
 class AttributesContainer extends Component<any> {
@@ -12,7 +13,7 @@ class AttributesContainer extends Component<any> {
 	render() {
 
 		const {attributes, type, active} = this.props;
-		if(!attributes) return <div>Loading...</div>
+		if(!attributes) return <Loader />
 		return (
 			<>
 				<h5>{attributes.name + ':'}</h5>
