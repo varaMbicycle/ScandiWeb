@@ -7,3 +7,4 @@ export const decrementQuantity = (id: string) => ({type: 'DECREMENT_QUANTITY', p
 export const moveSlideRight = (id: string) => ({type: 'SLIDE_TO_RIGHT', payload: id})
 export const moveSlideLeft = (id: string) => ({type: 'SLIDE_TO_LEFT', payload: id})
 export const selectAttribute = (productId: string, attribute: string, item: string) => ({type: 'SELECT_ATTRIBUTE', payload: {productId, attribute, item}})
+export const setCurrentCurrency = (currency: string) => ({type: 'SET_CURRENCY', payload: currency})

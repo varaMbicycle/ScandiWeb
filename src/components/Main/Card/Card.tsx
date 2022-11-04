@@ -19,7 +19,6 @@ class Card extends Component<any> {
 		const {inStock,id, name, gallery, brand, prices } = this.props.card;
 		const currentCurrency = localStorage.getItem('currentCurrency');
 		const price = prices.find((el: IPrice) => el.currency.symbol === currentCurrency)
-
 		if(!prices) return <Loader />
 		return (
 			<CardStyled inStock={inStock}>

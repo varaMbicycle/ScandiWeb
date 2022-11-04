@@ -8,7 +8,7 @@ import {
 	Route, Navigate,
 } from "react-router-dom";
 import {v4 as uuidv4} from "uuid";
-import {getCurrencies, getCategories} from "./queries";
+import {getCategories} from "./queries";
 import CardPage from "./components/CardPage/CardPage";
 import CartPage from "./components/CartPage/CartPage";
 import {ICategory} from "./Interfaces";
@@ -17,8 +17,14 @@ import {ICategory} from "./Interfaces";
 class App extends Component<any> {
 	constructor(props: any) {
 		super(props);
+		this.state = {
+			currentCurrency: localStorage.getItem('currentCurrency') || ''
+		}
 	}
 
+	handleChangeCurrency = (currency: string) => {
+		this.setState({...this.state, currentCurrency: currency})
+	}
 	componentDidMount() {
 		if (!localStorage.getItem('currentCurrency')) localStorage.setItem('currentCurrency', '$')
 	}

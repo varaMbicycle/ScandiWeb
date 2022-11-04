@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {OptionStyled} from "../Header/components/UserBar/styled";
 import {SelectContext} from "./CustomSelect";
+import {connect} from "react-redux";
+import {mapDispatchToProps, mapStateToProps} from "../../store/maps";
 interface IProps {
 	value: any;
 	children?: React.ReactNode;
