@@ -83,7 +83,7 @@ class CardPage extends Component<any, any> {
 							</div>}
 							<PriceField>
 								<h5>Price:</h5>
-								<div>{prices[index].currency.symbol + prices[index].amount}</div>
+								<div>{prices[index].currency.symbol + prices[index].amount.toFixed(2)}</div>
 							</PriceField>
 						</SelectionPanel>
 						<CustomButton
