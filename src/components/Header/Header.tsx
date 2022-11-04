@@ -4,7 +4,10 @@ import Navigation from "./components/Navigation/Navigation";
 import UserBar from "./components/UserBar/UserBar";
 import {AppBar, StyledNavigation} from './styled'
 
-class Header extends Component<any> {
+class Header extends Component<any, any> {
+	constructor(props: any) {
+		super(props);
+	}
 	render() {
 		return (
 			<AppBar>

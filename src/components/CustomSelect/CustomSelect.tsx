@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {SelectOptions} from "../Header/components/UserBar/styled";
 import {DropDownSelectMoney, SelectMoneyContainer, ToggleSelectMoney} from "../Header/components/UserBar/styled";
 import {getCurrencies} from "../../queries";
+import {connect} from "react-redux";
+import {mapDispatchToProps, mapStateToProps} from "../../store/maps";
 
 interface IProps {
 	value: string;
@@ -47,6 +49,7 @@ class CustomSelect extends Component<any, IState> {
 	handleChange = (value: string) => {
 		this.props.onChange(value)
 		this.handleClose()
+		this.props.setCurrency(value);
 	}
 
 	render() {
@@ -74,4 +77,4 @@ class CustomSelect extends Component<any, IState> {
 	}
 }
 
-export default CustomSelect;
+export default connect(mapStateToProps, mapDispatchToProps)(CustomSelect);
