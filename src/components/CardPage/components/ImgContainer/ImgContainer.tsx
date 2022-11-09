@@ -26,7 +26,7 @@ class ImgContainer extends Component<any, IState> {
 				<ImagesBlock>
 					{gallery.map((img: string) => (
 						<StyledImg active={img === this.state.currentImg} key={uuidv4()}>
-							{isStock && <div>OUT OF STOCK</div>}
+							{isStock && <div></div>}
 							<img
 								onClick={this.handleChangeImg}
 								src={img}

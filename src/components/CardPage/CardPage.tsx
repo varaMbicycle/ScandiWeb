@@ -46,6 +46,7 @@ class CardPage extends Component<any, any> {
 		if(this.props.data.product){
 			this.setState({...changeProductForBasket(this.props.data.product)})
 		}
+		window.scrollTo(0, 0);
 	}
 
 	render() {
@@ -59,6 +60,7 @@ class CardPage extends Component<any, any> {
 			prices,
 			inStock
 		} = changeProductForBasket(this.props.data.product);
+
 		const currentCurrency = localStorage.getItem('currentCurrency');
 		const index = prices?.findIndex((price: IPrice) => price.currency.symbol === currentCurrency) || 0
 		return (

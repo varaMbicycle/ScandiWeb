@@ -11,12 +11,19 @@ export const StyledImgContainer = styled.div`
 
 export const ImagesBlock = styled.div`
   max-width: 80px;
-  margin-right: 5px;
+  margin-right: 10px;
 `
 
 export const StyledImg = styled.div<{active: boolean}>`
   position: relative;
+  transition: 0.4s;
+  transform: scale(1);
   
+  :hover div{
+    transition: 0.4s;
+    cursor: ${props => !!props.active ? 'default': 'pointer'};
+    transform: ${props => props.active ? 'scale(1)': 'scale(1.2)'};
+  }
   div {
     position: absolute;
     width: 100%;
@@ -31,15 +38,8 @@ export const StyledImg = styled.div<{active: boolean}>`
     z-index: 1;
     background-color: rgba(255, 255, 255, 0.74);
     color: rgba(141, 143, 154, 0.64);
-    font-size: 12px;
     font-family: "Roboto Regular", sans-serif;
     pointer-events: none;
-    
-    :hover {
-      cursor: ${props => !!props.active ? 'default': 'pointer'};
-      box-shadow: ${props => !!props.active ? '0 0.5px 4px 1px rgba(34, 60, 80, 0.2)': '0 1px 16px 2px rgba(34, 60, 80, 0.2)'};
-      transform: ${props => props.active ? 'none': 'scale(1.2)'};
-    }
   }
   img {
     display: block;
@@ -47,7 +47,7 @@ export const StyledImg = styled.div<{active: boolean}>`
     aspect-ratio: 1/1;
     object-fit: contain;
     margin: 0 40px 40px 0;
-    transition: 0.2s;
+    transition: 0.4s;
     padding: 7px;
     border-radius: 5px;
     box-shadow: ${props => !!props.active ? '0 0.5px 4px 1px rgba(34, 60, 80, 0.2)': 'none'};
