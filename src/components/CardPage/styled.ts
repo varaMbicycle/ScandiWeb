@@ -156,7 +156,7 @@ export const TextItem = styled.div<{ active: boolean, isStock: boolean }>`
   color: ${props => props.active && props.isStock ? '#ffffff' : '#000000'};
   
   :hover {
-    cursor: ${props => !props.isStock ? 'default' : 'pointer'};
+    cursor: ${props => !props.isStock ? 'not-allowed' : 'pointer'};
     transform: ${props => props.active ? 'scale(1)' : 'scale(1.075)'};
     transform: ${props => !props.isStock || props.active ? 'scale(1)' : 'scale(1.075)'};
   }
@@ -176,7 +176,7 @@ export const SwatchItem = styled.div<{ color: string, active: boolean, isStock: 
   transition:0.2s;
   
   :hover {
-    cursor: ${props => !props.isStock ? 'default' : 'pointer'};
+    cursor: ${props => !props.isStock ? 'not-allowed' : 'pointer'};
     transform: ${props => props.active ? 'scale(1)' : 'scale(1.1)'};
     transform: ${props => !props.isStock || props.active ? 'scale(1)' : 'scale(1.1)'};
   }
