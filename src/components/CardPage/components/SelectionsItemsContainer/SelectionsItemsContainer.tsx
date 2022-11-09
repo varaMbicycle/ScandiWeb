@@ -17,7 +17,7 @@ class SelectionsItemsContainer extends Component<any> {
 	}
 
 	render() {
-		const {attributes, type, active} = this.props;
+		const {attributes, type, active, isStock} = this.props;
 
 		if (!attributes) return <Loader />
 		return (
@@ -26,19 +26,21 @@ class SelectionsItemsContainer extends Component<any> {
 				<StyledSelectionsItemsContainer>
 					{type === "text" ?
 						attributes.items.map((item: IAttribute, i: number) => <TextItem
-							onClick={this.handleChangeActiveItem}
+							onClick={isStock ? this.handleChangeActiveItem : () => {}}
 							id={item.id}
 							active={active ? active === i : i === attributes.activeItem}
 							key={uuidv4()}
+							isStock={isStock}
 						>
 							{item.value}
 						</TextItem>) :
 						attributes.items.map((item: IAttribute, i: number) => <SwatchItem
-							onClick={this.handleChangeActiveItem}
+							onClick={isStock ? this.handleChangeActiveItem : () => {}}
 							color={item.value}
 							id={item.id}
 							active={active ? active === i : i === attributes.activeItem}
 							key={uuidv4()}
+							isStock={isStock}
 						>
 							<div id={item.id}></div>
 						</SwatchItem>)

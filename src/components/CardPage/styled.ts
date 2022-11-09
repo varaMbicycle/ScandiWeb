@@ -15,6 +15,32 @@ export const ImagesBlock = styled.div`
 `
 
 export const StyledImg = styled.div<{active: boolean}>`
+  position: relative;
+  
+  div {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.74);
+    color: rgba(141, 143, 154, 0.64);
+    font-size: 12px;
+    font-family: "Roboto Regular", sans-serif;
+    pointer-events: none;
+    
+    :hover {
+      cursor: ${props => !!props.active ? 'default': 'pointer'};
+      box-shadow: ${props => !!props.active ? '0 0.5px 4px 1px rgba(34, 60, 80, 0.2)': '0 1px 16px 2px rgba(34, 60, 80, 0.2)'};
+      transform: ${props => props.active ? 'none': 'scale(1.2)'};
+    }
+  }
   img {
     display: block;
     width: 100%;
@@ -22,7 +48,7 @@ export const StyledImg = styled.div<{active: boolean}>`
     object-fit: contain;
     margin: 0 40px 40px 0;
     transition: 0.2s;
-    padding: 5px;
+    padding: 7px;
     border-radius: 5px;
     box-shadow: ${props => !!props.active ? '0 0.5px 4px 1px rgba(34, 60, 80, 0.2)': 'none'};
 
@@ -113,7 +139,7 @@ export const StyledSelectionsItemsContainer = styled.div`
   margin-bottom: 24px;
 `
 
-export const TextItem = styled.div<{ active: boolean }>`
+export const TextItem = styled.div<{ active: boolean, isStock: boolean }>`
   min-width: 45px;
   min-height: 45px;
   margin-right: 6px;
@@ -126,35 +152,39 @@ export const TextItem = styled.div<{ active: boolean }>`
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 16px;
   transition: 0.2s;
-  background-color: ${props => props.active ? '#000000': '#ffffff'};
-  color: ${props => props.active ? '#ffffff' : '#000000'};
-
+  background-color: ${props => props.active && props.isStock ? '#000000': '#ffffff'};
+  color: ${props => props.active && props.isStock ? '#ffffff' : '#000000'};
+  
   :hover {
-    cursor: pointer;
+    cursor: ${props => !props.isStock ? 'default' : 'pointer'};
     transform: ${props => props.active ? 'scale(1)' : 'scale(1.075)'};
+    transform: ${props => !props.isStock || props.active ? 'scale(1)' : 'scale(1.075)'};
   }
   :active{
     transform: scale(1);
   }
 `
 
-export const SwatchItem = styled.div<{ color: string, active: boolean }>`
+export const SwatchItem = styled.div<{ color: string, active: boolean, isStock: boolean }>`
   width: 36px;
   height: 36px;
   margin-right: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: ${props => props.active ? '2px solid #5ECE7B': '2px solid rgba(88, 88, 88, 0.15)'};
+  border: ${props => props.active && props.isStock ? '2px solid #5ECE7B': '2px solid rgba(88, 88, 88, 0.15)'};
   transition:0.2s;
+  
   :hover {
-    cursor: pointer;
+    cursor: ${props => !props.isStock ? 'default' : 'pointer'};
     transform: ${props => props.active ? 'scale(1)' : 'scale(1.1)'};
-
+    transform: ${props => !props.isStock || props.active ? 'scale(1)' : 'scale(1.1)'};
   }
+  
   :active{
-    transform: scale(1);
+    transform: ${props => props.isStock ? 'scale(1)' : ''};
   }
+  
   div{
     width: 30px;
     height: 30px;

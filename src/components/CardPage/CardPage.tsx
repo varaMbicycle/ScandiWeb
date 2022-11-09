@@ -77,6 +77,7 @@ class CardPage extends Component<any, any> {
 										attributes={arr[i]}
 										type={arr[i].type}
 										key={uuidv4()}
+										isStock={inStock}
 									/>
 								)
 							)}
