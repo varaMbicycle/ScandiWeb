@@ -10,7 +10,7 @@ import {Provider} from "react-redux";
 import {store} from "./store/store";
 
 const client = new ApolloClient({
-	uri: 'https://server-for-shop-scandiweb.herokuapp.com/graphql',
+	uri: 'https://react-shop-server-test-bpwon2dcd-varachkin.vercel.app/graphql',
 	cache: new InMemoryCache({
 		addTypename: false
 	}),
