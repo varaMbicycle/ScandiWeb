@@ -1,15 +1,20 @@
 import styled from "styled-components";
 
 export const Message = styled.h2`
-	text-align: center;
-	font-size: 30px;
+  text-align: center;
+  font-size: 30px;
   font-weight: 700;
   margin: 3rem;
-
+  @media (max-width: 1080px){
+    font-size: 24px;
+  }
 `
 
 export const CartPageContainer = styled.div`
   padding: 80px 100px;
+  @media (max-width: 1080px){
+    padding: 1rem 1.5rem;
+  }
 
   h3 {
     font-size: 32px;
@@ -25,6 +30,9 @@ export const CartPageContainer = styled.div`
 export const CartPageResultBlock = styled.div`
   width: 280px;
   margin-top: 32px;
+  @media (max-width: 600px){
+    width: 100%;
+  }
 
   h5 {
     font-size: 24px;

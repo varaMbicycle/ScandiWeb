@@ -11,6 +11,10 @@ export const CartButton = styled.button`
   margin-left: 2rem;
   margin-right: 20px;
   cursor: pointer;
+  @media (max-width: 1080px) {
+    margin-left: 0.5rem;
+    margin-right: 12px;
+  }
 `
 
 export const CartCounter = styled.div<{ count: number }>`

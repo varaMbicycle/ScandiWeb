@@ -6,6 +6,7 @@ export const CardStyled = styled.div<{ inStock: boolean }>`
   display: flex;
   flex-direction: column;
   transition: 0.3s;
+  min-width: 260px;
 
   a {
     text-decoration: none;

@@ -3,6 +3,7 @@ import { getCurrencies } from '../../queries';
 import Navigation from "./components/Navigation/Navigation";
 import UserBar from "./components/UserBar/UserBar";
 import {AppBar, StyledNavigation} from './styled'
+import Burger from "./components/Burger/Burger";
 
 class Header extends Component<any, any> {
 	constructor(props: any) {
@@ -11,6 +12,7 @@ class Header extends Component<any, any> {
 	render() {
 		return (
 			<AppBar>
+				<Burger />
 				<StyledNavigation>
 					<Navigation />
 				</StyledNavigation>

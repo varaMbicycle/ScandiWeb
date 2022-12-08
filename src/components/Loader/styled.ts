@@ -6,6 +6,9 @@ export const ContainerSpinner = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
+  @media (max-width: 600px){
+    font-size: 55px;
+  }
 `
 
 export const Spinner = styled.div`

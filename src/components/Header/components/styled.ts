@@ -7,7 +7,11 @@ export const ListNavigation = styled.ul`
   a {
     text-decoration: none;
   }
-  
+  @media (max-width: 1080px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 `
 export const StyledLI = styled.li`
   height: 100%;

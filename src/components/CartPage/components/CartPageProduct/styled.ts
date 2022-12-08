@@ -4,6 +4,14 @@ export const CartProductContainer = styled.section`
   display: flex;
   justify-content: space-between;
   position: relative;
+  flex-wrap: wrap;
+  @media (max-width: 600px){
+    justify-content: center;
+    >div, >section{
+      width: 100%;
+    }
+  }
+}
   
   > button {
     display: flex;
@@ -61,6 +69,9 @@ export const CartProductDescription = styled.section`
 export const CounterImgContainer = styled.div`
   display: flex;
   margin: 24px 0;
+  @media (max-width: 600px){
+    justify-content: space-between;
+  }
 `
 
 export const ImgSliderContainer = styled.div`
